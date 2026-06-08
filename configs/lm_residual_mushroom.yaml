@@ -1,0 +1,30 @@
+experiment:
+  name: "LM_Residual — Mushroom (UCI)"
+  seed: 42
+
+architecture:
+  n_inputs: 111        # overridden by the dataset's n_features at runtime
+  hidden_width: 6      # matches 1st layer of baseline [6,4] → comparable param count
+  n_blocks: 1          # number of residual blocks
+  n_inner: 1           # inner layers per block
+
+optimizer:
+  method: LM_Residual
+  params:
+    mu_init: 0.01
+    patience: 80
+    crystallize_n: 2
+    prune: false
+    batch_size: 512
+
+dataset:
+  type: mushroom
+
+training:
+  tol_mse: 0.15
+  max_iter: 600
+  n_trials: 10
+
+logging:
+  results_dir: results/residual
+  verbose: false

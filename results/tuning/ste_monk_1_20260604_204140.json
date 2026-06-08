@@ -1,0 +1,307 @@
+{
+  "label": "ste_monk_1",
+  "timestamp": "20260604_204140",
+  "status": "done",
+  "n_combos": 9,
+  "n_trials_per_combo": 5,
+  "best_score": 0.7797222256660461,
+  "best_params": {
+    "hidden_layers": [
+      8,
+      4
+    ],
+    "lr": 0.01
+  },
+  "top10": [
+    {
+      "rank": 1,
+      "params": {
+        "hidden_layers": [
+          8,
+          4
+        ],
+        "lr": 0.01
+      },
+      "score": 0.7797222256660461,
+      "accuracy_mean": 0.6328703761100769,
+      "accuracy_std": 0.11920286673242489,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3306451618671417,
+      "n_trials": 5
+    },
+    {
+      "rank": 2,
+      "params": {
+        "hidden_layers": [
+          6,
+          4
+        ],
+        "lr": 0.001
+      },
+      "score": 0.7688888835906983,
+      "accuracy_mean": 0.6148148059844971,
+      "accuracy_std": 0.1605887543227675,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3354838743805885,
+      "n_trials": 5
+    },
+    {
+      "rank": 3,
+      "params": {
+        "hidden_layers": [
+          8,
+          4
+        ],
+        "lr": 0.005
+      },
+      "score": 0.7688888835906983,
+      "accuracy_mean": 0.6148148059844971,
+      "accuracy_std": 0.13955858660801201,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3596774250268936,
+      "n_trials": 5
+    },
+    {
+      "rank": 4,
+      "params": {
+        "hidden_layers": [
+          4,
+          4
+        ],
+        "lr": 0.01
+      },
+      "score": 0.7666666626930236,
+      "accuracy_mean": 0.6111111044883728,
+      "accuracy_std": 0.14088078049692654,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3774193570017815,
+      "n_trials": 5
+    },
+    {
+      "rank": 5,
+      "params": {
+        "hidden_layers": [
+          4,
+          4
+        ],
+        "lr": 0.001
+      },
+      "score": 0.7622222137451171,
+      "accuracy_mean": 0.6037036895751953,
+      "accuracy_std": 0.09353397974536248,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3709677457809448,
+      "n_trials": 5
+    },
+    {
+      "rank": 6,
+      "params": {
+        "hidden_layers": [
+          6,
+          4
+        ],
+        "lr": 0.01
+      },
+      "score": 0.7594444394111634,
+      "accuracy_mean": 0.5990740656852722,
+      "accuracy_std": 0.10942734257652985,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.32903226017951964,
+      "n_trials": 5
+    },
+    {
+      "rank": 7,
+      "params": {
+        "hidden_layers": [
+          4,
+          4
+        ],
+        "lr": 0.005
+      },
+      "score": 0.7497222185134889,
+      "accuracy_mean": 0.582870364189148,
+      "accuracy_std": 0.09832378625989242,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3903225898742676,
+      "n_trials": 5
+    },
+    {
+      "rank": 8,
+      "params": {
+        "hidden_layers": [
+          6,
+          4
+        ],
+        "lr": 0.005
+      },
+      "score": 0.7291666662693024,
+      "accuracy_mean": 0.5486111104488373,
+      "accuracy_std": 0.13180222790869162,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.4161290392279625,
+      "n_trials": 5
+    },
+    {
+      "rank": 9,
+      "params": {
+        "hidden_layers": [
+          8,
+          4
+        ],
+        "lr": 0.001
+      },
+      "score": 0.7288888859748841,
+      "accuracy_mean": 0.5481481432914734,
+      "accuracy_std": 0.03683393755776663,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.40967742204666135,
+      "n_trials": 5
+    }
+  ],
+  "all": [
+    {
+      "rank": 1,
+      "params": {
+        "hidden_layers": [
+          8,
+          4
+        ],
+        "lr": 0.01
+      },
+      "score": 0.7797222256660461,
+      "accuracy_mean": 0.6328703761100769,
+      "accuracy_std": 0.11920286673242489,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3306451618671417,
+      "n_trials": 5
+    },
+    {
+      "rank": 2,
+      "params": {
+        "hidden_layers": [
+          6,
+          4
+        ],
+        "lr": 0.001
+      },
+      "score": 0.7688888835906983,
+      "accuracy_mean": 0.6148148059844971,
+      "accuracy_std": 0.1605887543227675,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3354838743805885,
+      "n_trials": 5
+    },
+    {
+      "rank": 3,
+      "params": {
+        "hidden_layers": [
+          8,
+          4
+        ],
+        "lr": 0.005
+      },
+      "score": 0.7688888835906983,
+      "accuracy_mean": 0.6148148059844971,
+      "accuracy_std": 0.13955858660801201,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3596774250268936,
+      "n_trials": 5
+    },
+    {
+      "rank": 4,
+      "params": {
+        "hidden_layers": [
+          4,
+          4
+        ],
+        "lr": 0.01
+      },
+      "score": 0.7666666626930236,
+      "accuracy_mean": 0.6111111044883728,
+      "accuracy_std": 0.14088078049692654,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3774193570017815,
+      "n_trials": 5
+    },
+    {
+      "rank": 5,
+      "params": {
+        "hidden_layers": [
+          4,
+          4
+        ],
+        "lr": 0.001
+      },
+      "score": 0.7622222137451171,
+      "accuracy_mean": 0.6037036895751953,
+      "accuracy_std": 0.09353397974536248,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3709677457809448,
+      "n_trials": 5
+    },
+    {
+      "rank": 6,
+      "params": {
+        "hidden_layers": [
+          6,
+          4
+        ],
+        "lr": 0.01
+      },
+      "score": 0.7594444394111634,
+      "accuracy_mean": 0.5990740656852722,
+      "accuracy_std": 0.10942734257652985,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.32903226017951964,
+      "n_trials": 5
+    },
+    {
+      "rank": 7,
+      "params": {
+        "hidden_layers": [
+          4,
+          4
+        ],
+        "lr": 0.005
+      },
+      "score": 0.7497222185134889,
+      "accuracy_mean": 0.582870364189148,
+      "accuracy_std": 0.09832378625989242,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3903225898742676,
+      "n_trials": 5
+    },
+    {
+      "rank": 8,
+      "params": {
+        "hidden_layers": [
+          6,
+          4
+        ],
+        "lr": 0.005
+      },
+      "score": 0.7291666662693024,
+      "accuracy_mean": 0.5486111104488373,
+      "accuracy_std": 0.13180222790869162,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.4161290392279625,
+      "n_trials": 5
+    },
+    {
+      "rank": 9,
+      "params": {
+        "hidden_layers": [
+          8,
+          4
+        ],
+        "lr": 0.001
+      },
+      "score": 0.7288888859748841,
+      "accuracy_mean": 0.5481481432914734,
+      "accuracy_std": 0.03683393755776663,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.40967742204666135,
+      "n_trials": 5
+    }
+  ]
+}

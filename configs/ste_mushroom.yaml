@@ -1,0 +1,25 @@
+experiment:
+  name: "STE — Mushroom (UCI), 111 features"
+  seed: 42
+
+architecture:
+  n_inputs: 111
+  hidden_layers: [8, 4]
+
+optimizer:
+  method: STE
+  params:
+    lr: 0.005
+    clip_grad: 1.0
+
+dataset:
+  type: mushroom
+
+training:
+  tol_mse: 0.002
+  max_iter: 3000
+  n_trials: 3
+
+logging:
+  results_dir: results
+  verbose: false

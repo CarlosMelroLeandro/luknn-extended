@@ -1,0 +1,29 @@
+experiment:
+  name: "Proximal — Heart Disease (Cleveland, 22 features)"
+  seed: 42
+
+architecture:
+  n_inputs: 22
+  hidden_layers: [6, 4]
+
+optimizer:
+  method: Proximal
+  params:
+    lr: 0.008
+    lambda_sparse: 0.002
+    lambda_attract: 0.08
+    prox_threshold: 0.0003
+    phase1_fraction: 0.65
+
+dataset:
+  type: heart_disease
+  heart_subset: cleveland
+
+training:
+  tol_mse: 0.05
+  max_iter: 5000
+  n_trials: 5
+
+logging:
+  results_dir: results
+  verbose: false

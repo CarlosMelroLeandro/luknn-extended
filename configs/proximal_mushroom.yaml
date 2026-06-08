@@ -1,0 +1,28 @@
+experiment:
+  name: "Proximal — Mushroom (UCI), 111 features"
+  seed: 42
+
+architecture:
+  n_inputs: 111
+  hidden_layers: [8, 4]
+
+optimizer:
+  method: Proximal
+  params:
+    lr: 0.005
+    lambda_sparse: 0.001
+    lambda_attract: 0.05
+    prox_threshold: 0.0002
+    phase1_fraction: 0.65
+
+dataset:
+  type: mushroom
+
+training:
+  tol_mse: 0.002
+  max_iter: 4000
+  n_trials: 3
+
+logging:
+  results_dir: results
+  verbose: false

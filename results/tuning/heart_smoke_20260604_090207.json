@@ -1,0 +1,42 @@
+{
+  "label": "heart_smoke",
+  "timestamp": "20260604_090207",
+  "status": "done",
+  "n_combos": 1,
+  "n_trials_per_combo": 2,
+  "best_score": 0.6850000053644181,
+  "best_params": {
+    "hidden_width": 4,
+    "mu_init": 0.01
+  },
+  "top10": [
+    {
+      "rank": 1,
+      "params": {
+        "hidden_width": 4,
+        "mu_init": 0.01
+      },
+      "score": 0.6850000053644181,
+      "accuracy_mean": 0.4750000089406967,
+      "accuracy_std": 0.10606602139266698,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3744693174958229,
+      "n_trials": 2
+    }
+  ],
+  "all": [
+    {
+      "rank": 1,
+      "params": {
+        "hidden_width": 4,
+        "mu_init": 0.01
+      },
+      "score": 0.6850000053644181,
+      "accuracy_mean": 0.4750000089406967,
+      "accuracy_std": 0.10606602139266698,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.3744693174958229,
+      "n_trials": 2
+    }
+  ]
+}

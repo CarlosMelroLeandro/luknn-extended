@@ -1,0 +1,42 @@
+{
+  "label": "monk_1_smoke",
+  "timestamp": "20260604_091137",
+  "status": "done",
+  "n_combos": 1,
+  "n_trials_per_combo": 2,
+  "best_score": 0.15,
+  "best_params": {
+    "hidden_width": 4,
+    "mu_init": 0.01
+  },
+  "top10": [
+    {
+      "rank": 1,
+      "params": {
+        "hidden_width": 4,
+        "mu_init": 0.01
+      },
+      "score": 0.15,
+      "accuracy_mean": 0.25,
+      "accuracy_std": 0.3535533905932738,
+      "crystallization_rate": 0.0,
+      "mse_mean": 0.3546772599220276,
+      "n_trials": 2
+    }
+  ],
+  "all": [
+    {
+      "rank": 1,
+      "params": {
+        "hidden_width": 4,
+        "mu_init": 0.01
+      },
+      "score": 0.15,
+      "accuracy_mean": 0.25,
+      "accuracy_std": 0.3535533905932738,
+      "crystallization_rate": 0.0,
+      "mse_mean": 0.3546772599220276,
+      "n_trials": 2
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+experiment:
+  name: "LM — Mushroom (UCI), 111 features"
+  seed: 42
+
+architecture:
+  n_inputs: 111        # overridden by dataset.n_features at runtime
+  hidden_layers: [6, 4]
+
+optimizer:
+  method: LM
+  params:
+    mu_init: 0.01
+    patience: 80
+    crystallize_n: 2
+    prune: false       # OBS pruning disabled for large datasets (slow)
+    batch_size: 512    # mini-batch Jacobian: 512 rows per LM step
+
+dataset:
+  type: mushroom
+
+training:
+  tol_mse: 0.15
+  max_iter: 600
+  n_trials: 10
+
+logging:
+  results_dir: results
+  verbose: false

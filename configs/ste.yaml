@@ -1,0 +1,28 @@
+experiment:
+  name: "STE Optimizer — f1, 3-valued"
+  seed: 42
+
+architecture:
+  n_inputs: 6
+  hidden_layers: [4, 4]
+
+optimizer:
+  method: STE
+  params:
+    lr: 0.005
+    clip_grad: 1.0
+
+dataset:
+  type: truth_table
+  formula: f1
+  n_values: 3
+  n_vars: 6
+
+training:
+  tol_mse: 0.002
+  max_iter: 3000
+  n_trials: 3
+
+logging:
+  results_dir: results
+  verbose: false

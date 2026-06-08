@@ -1,0 +1,29 @@
+experiment:
+  name: "LM — Heart Disease (Cleveland, 22 features)"
+  seed: 42
+
+architecture:
+  n_inputs: 22
+  hidden_layers: [6, 4]
+
+optimizer:
+  method: LM
+  params:
+    mu_init: 0.01
+    patience: 100
+    crystallize_n: 2
+    prune: true
+    batch_size: 0      # full dataset (243 rows) — tractable without mini-batch
+
+dataset:
+  type: heart_disease
+  heart_subset: cleveland
+
+training:
+  tol_mse: 0.15
+  max_iter: 800
+  n_trials: 10
+
+logging:
+  results_dir: results
+  verbose: false

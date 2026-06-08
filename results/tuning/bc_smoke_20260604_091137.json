@@ -1,0 +1,45 @@
+{
+  "label": "bc_smoke",
+  "timestamp": "20260604_091137",
+  "status": "done",
+  "n_combos": 1,
+  "n_trials_per_combo": 2,
+  "best_score": 0.3789473533630371,
+  "best_params": {
+    "hidden_width": 4,
+    "mu_init": 0.01,
+    "prune": true
+  },
+  "top10": [
+    {
+      "rank": 1,
+      "params": {
+        "hidden_width": 4,
+        "mu_init": 0.01,
+        "prune": true
+      },
+      "score": 0.3789473533630371,
+      "accuracy_mean": 0.6315789222717285,
+      "accuracy_std": 0.0,
+      "crystallization_rate": 0.0,
+      "mse_mean": 0.271914467215538,
+      "n_trials": 2
+    }
+  ],
+  "all": [
+    {
+      "rank": 1,
+      "params": {
+        "hidden_width": 4,
+        "mu_init": 0.01,
+        "prune": true
+      },
+      "score": 0.3789473533630371,
+      "accuracy_mean": 0.6315789222717285,
+      "accuracy_std": 0.0,
+      "crystallization_rate": 0.0,
+      "mse_mean": 0.271914467215538,
+      "n_trials": 2
+    }
+  ]
+}

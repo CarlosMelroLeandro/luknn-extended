@@ -1,0 +1,32 @@
+experiment:
+  name: "LM Baseline — f1 (i1⊗i3⟹i6), 3-valued"
+  seed: 42
+
+architecture:
+  n_inputs: 6
+  hidden_layers: [4, 4]
+
+optimizer:
+  method: LM
+  params:
+    mu_init: 0.01
+    factor_up: 10.0
+    factor_down: 10.0
+    crystallize_n: 2
+    patience: 50
+    prune: true
+
+dataset:
+  type: truth_table
+  formula: f1
+  n_values: 3
+  n_vars: 6
+
+training:
+  tol_mse: 0.002
+  max_iter: 400
+  n_trials: 3
+
+logging:
+  results_dir: results
+  verbose: false

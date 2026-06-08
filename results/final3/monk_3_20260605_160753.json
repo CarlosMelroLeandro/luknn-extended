@@ -1,0 +1,567 @@
+{
+  "dataset": "monk_3",
+  "best_params": {
+    "lm_residual": {
+      "hidden_width": 8,
+      "n_blocks": 1,
+      "mu_init": 0.1
+    },
+    "ste": {
+      "hidden_layers": [
+        8,
+        4
+      ],
+      "lr": 0.005
+    },
+    "proximal": {
+      "hidden_layers": [
+        4,
+        4
+      ],
+      "lr": 0.005,
+      "lambda_sparse": 0.0001
+    }
+  },
+  "stats": {
+    "accuracy": {
+      "lm_residual": {
+        "mean": 0.7138888835906982,
+        "std": 0.21197435772377088
+      },
+      "ste": {
+        "mean": 0.6324074119329453,
+        "std": 0.16140307870899998
+      },
+      "proximal": {
+        "mean": 0.4722222089767456,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.4921875,
+        "LM/PRX": 0.015625,
+        "STE/PRX": 0.0078125
+      }
+    },
+    "f1": {
+      "lm_residual": {
+        "mean": 0.6033295473494811,
+        "std": 0.42477980337393406
+      },
+      "ste": {
+        "mean": 0.5046349772100103,
+        "std": 0.35927603419389625
+      },
+      "proximal": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.4921875,
+        "LM/PRX": 0.015625,
+        "STE/PRX": 0.0078125
+      }
+    },
+    "final_mse": {
+      "lm_residual": {
+        "mean": 0.296721301227808,
+        "std": 0.19701707122415657
+      },
+      "ste": {
+        "mean": 0.3622950702905655,
+        "std": 0.17300928510127603
+      },
+      "proximal": {
+        "mean": 0.5245901346206665,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.431640625,
+        "LM/PRX": 0.015625,
+        "STE/PRX": 0.03125
+      }
+    },
+    "lambda_similarity": {
+      "lm_residual": {
+        "mean": 0.766373708693032,
+        "std": 0.15995991529589781
+      },
+      "ste": {
+        "mean": 0.7006897725042037,
+        "std": 0.11568780389654555
+      },
+      "proximal": {
+        "mean": 0.5899144273311417,
+        "std": 1.1702778228589004e-16
+      },
+      "p_values": {
+        "LM/STE": 0.431640625,
+        "LM/PRX": 0.015625,
+        "STE/PRX": 0.0078125
+      }
+    },
+    "total_time_s": {
+      "lm_residual": {
+        "mean": 0.032648664299972555,
+        "std": 0.02166477963218101
+      },
+      "ste": {
+        "mean": 0.2596812116999899,
+        "std": 0.06893114726285231
+      },
+      "proximal": {
+        "mean": 0.3382080653999878,
+        "std": 0.012730727701752211
+      },
+      "p_values": {
+        "LM/STE": 0.001953125,
+        "LM/PRX": 0.001953125,
+        "STE/PRX": 0.00390625
+      }
+    },
+    "iterations": {
+      "lm_residual": {
+        "mean": 6.2,
+        "std": 4.263540521418529
+      },
+      "ste": {
+        "mean": 225.0,
+        "std": 61.006374894577846
+      },
+      "proximal": {
+        "mean": 48.7,
+        "std": 5.457919831665622
+      },
+      "p_values": {
+        "LM/STE": 0.001953125,
+        "LM/PRX": 0.001953125,
+        "STE/PRX": 0.001953125
+      }
+    }
+  },
+  "lm_residual": [
+    {
+      "method": "LM_Residual",
+      "dataset": "monk_3",
+      "trial": 0,
+      "final_mse": 0.08196721225976944,
+      "accuracy": 0.9722222089767456,
+      "f1": 0.972972972972973,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.9726044769150576,
+      "total_time_s": 0.02694557499989969,
+      "iterations": 5,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "monk_3",
+      "trial": 1,
+      "final_mse": 0.08196721225976944,
+      "accuracy": 0.9722222089767456,
+      "f1": 0.972972972972973,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.9726044769150576,
+      "total_time_s": 0.009202016000017466,
+      "iterations": 1,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "monk_3",
+      "trial": 2,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.02623553199998696,
+      "iterations": 5,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "monk_3",
+      "trial": 3,
+      "final_mse": 0.2049180269241333,
+      "accuracy": 0.8055555820465088,
+      "f1": 0.8372093023255814,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.8232919126995569,
+      "total_time_s": 0.013338652000015827,
+      "iterations": 2,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "monk_3",
+      "trial": 4,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.03020792600000277,
+      "iterations": 6,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "monk_3",
+      "trial": 5,
+      "final_mse": 0.30327868461608887,
+      "accuracy": 0.6944444179534912,
+      "f1": 0.7755102040816326,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7367139775779311,
+      "total_time_s": 0.034592255000006844,
+      "iterations": 7,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "monk_3",
+      "trial": 6,
+      "final_mse": 0.10655737668275833,
+      "accuracy": 0.8888888955116272,
+      "f1": 0.9,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.8948393160735839,
+      "total_time_s": 0.08639826299997821,
+      "iterations": 16,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "monk_3",
+      "trial": 7,
+      "final_mse": 0.13934426009655,
+      "accuracy": 0.8611111044883728,
+      "f1": 0.8837209302325582,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.8703247200694576,
+      "total_time_s": 0.047162939999907394,
+      "iterations": 10,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "monk_3",
+      "trial": 8,
+      "final_mse": 0.4754098355770111,
+      "accuracy": 0.5277777910232544,
+      "f1": 0.6909090909090909,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.62361492468625,
+      "total_time_s": 0.021991944999967927,
+      "iterations": 4,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "monk_3",
+      "trial": 9,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.030411538999942422,
+      "iterations": 6,
+      "converged": true
+    }
+  ],
+  "ste": [
+    {
+      "method": "STE",
+      "dataset": "monk_3",
+      "trial": 0,
+      "final_mse": 0.18852458894252777,
+      "accuracy": 0.7361111044883728,
+      "f1": 0.7076923076923077,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7680588697041014,
+      "total_time_s": 0.25797159199998987,
+      "iterations": 224,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "monk_3",
+      "trial": 1,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.47453704476356506,
+      "f1": 0.008733624454148471,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5912815464752014,
+      "total_time_s": 0.3504361020000033,
+      "iterations": 304,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "monk_3",
+      "trial": 2,
+      "final_mse": 0.13114753365516663,
+      "accuracy": 0.8796296119689941,
+      "f1": 0.8934426229508197,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.88659200604379,
+      "total_time_s": 0.23955468500003008,
+      "iterations": 200,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "monk_3",
+      "trial": 3,
+      "final_mse": 0.2950819730758667,
+      "accuracy": 0.6851851940155029,
+      "f1": 0.5853658536585366,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7299240393166447,
+      "total_time_s": 0.14284513499990226,
+      "iterations": 122,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "monk_3",
+      "trial": 4,
+      "final_mse": 0.1147540956735611,
+      "accuracy": 0.8564814925193787,
+      "f1": 0.8680851063829788,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.8663047540112446,
+      "total_time_s": 0.3164182969999274,
+      "iterations": 275,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "monk_3",
+      "trial": 5,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.28577535099998386,
+      "iterations": 251,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "monk_3",
+      "trial": 6,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.46990740299224854,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5885504691427476,
+      "total_time_s": 0.2870202489999656,
+      "iterations": 251,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "monk_3",
+      "trial": 7,
+      "final_mse": 0.4754098355770111,
+      "accuracy": 0.5277777910232544,
+      "f1": 0.6909090909090909,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.62361492468625,
+      "total_time_s": 0.28534673800004384,
+      "iterations": 251,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "monk_3",
+      "trial": 8,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.5092592835426331,
+      "f1": 0.6656151419558359,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6121727615084336,
+      "total_time_s": 0.2908799450000288,
+      "iterations": 251,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "monk_3",
+      "trial": 9,
+      "final_mse": 0.3196721374988556,
+      "accuracy": 0.7129629850387573,
+      "f1": 0.6265060240963856,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7504839268224831,
+      "total_time_s": 0.14056402300002446,
+      "iterations": 121,
+      "converged": false
+    }
+  ],
+  "proximal": [
+    {
+      "method": "Proximal",
+      "dataset": "monk_3",
+      "trial": 0,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.32724618099996405,
+      "iterations": 41,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "monk_3",
+      "trial": 1,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.33797947299990483,
+      "iterations": 46,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "monk_3",
+      "trial": 2,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.343199645000027,
+      "iterations": 46,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "monk_3",
+      "trial": 3,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.3717317450000337,
+      "iterations": 61,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "monk_3",
+      "trial": 4,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.33326923300001,
+      "iterations": 48,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "monk_3",
+      "trial": 5,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.3317039840000007,
+      "iterations": 49,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "monk_3",
+      "trial": 6,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.3382638629999519,
+      "iterations": 53,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "monk_3",
+      "trial": 7,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.33734944499997255,
+      "iterations": 50,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "monk_3",
+      "trial": 8,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.3327362019999782,
+      "iterations": 49,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "monk_3",
+      "trial": 9,
+      "final_mse": 0.5245901346206665,
+      "accuracy": 0.4722222089767456,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5899144273311419,
+      "total_time_s": 0.32860088300003554,
+      "iterations": 44,
+      "converged": false
+    }
+  ]
+}

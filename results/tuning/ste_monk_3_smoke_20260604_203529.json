@@ -1,0 +1,51 @@
+{
+  "label": "ste_monk_3_smoke",
+  "timestamp": "20260604_203529",
+  "status": "done",
+  "n_combos": 1,
+  "n_trials_per_combo": 2,
+  "best_score": 0.7541666567325592,
+  "best_params": {
+    "hidden_layers": [
+      4,
+      4
+    ],
+    "lr": 0.005
+  },
+  "top10": [
+    {
+      "rank": 1,
+      "params": {
+        "hidden_layers": [
+          4,
+          4
+        ],
+        "lr": 0.005
+      },
+      "score": 0.7541666567325592,
+      "accuracy_mean": 0.590277761220932,
+      "accuracy_std": 0.1669557630971739,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.37704916298389435,
+      "n_trials": 2
+    }
+  ],
+  "all": [
+    {
+      "rank": 1,
+      "params": {
+        "hidden_layers": [
+          4,
+          4
+        ],
+        "lr": 0.005
+      },
+      "score": 0.7541666567325592,
+      "accuracy_mean": 0.590277761220932,
+      "accuracy_std": 0.1669557630971739,
+      "crystallization_rate": 1.0,
+      "mse_mean": 0.37704916298389435,
+      "n_trials": 2
+    }
+  ]
+}

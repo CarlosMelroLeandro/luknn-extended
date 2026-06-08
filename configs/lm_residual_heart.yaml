@@ -1,0 +1,31 @@
+experiment:
+  name: "LM_Residual — Heart Disease (Cleveland)"
+  seed: 42
+
+architecture:
+  n_inputs: 13
+  hidden_width: 6      # matches 1st layer of baseline [6,4] → comparable param count
+  n_blocks: 1
+  n_inner: 1
+
+optimizer:
+  method: LM_Residual
+  params:
+    mu_init: 0.01
+    patience: 100
+    crystallize_n: 2
+    prune: true
+    batch_size: 0
+
+dataset:
+  type: heart_disease
+  heart_subset: cleveland
+
+training:
+  tol_mse: 0.15
+  max_iter: 800
+  n_trials: 10
+
+logging:
+  results_dir: results/residual
+  verbose: false

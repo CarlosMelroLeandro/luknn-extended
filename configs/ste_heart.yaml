@@ -1,0 +1,26 @@
+experiment:
+  name: "STE — Heart Disease (Cleveland, 22 features)"
+  seed: 42
+
+architecture:
+  n_inputs: 22
+  hidden_layers: [6, 4]
+
+optimizer:
+  method: STE
+  params:
+    lr: 0.005
+    clip_grad: 1.0
+
+dataset:
+  type: heart_disease
+  heart_subset: cleveland
+
+training:
+  tol_mse: 0.05
+  max_iter: 5000
+  n_trials: 5
+
+logging:
+  results_dir: results
+  verbose: false
