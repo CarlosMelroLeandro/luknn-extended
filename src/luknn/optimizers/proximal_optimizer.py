@@ -20,11 +20,17 @@ lets Phase 1 find a genuine low-MSE solution first.
 
 import time
 import torch
+import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 
 from .base import BaseOptimizer, TrainingResult
-from ..layers.lukasiewicz_linear import LukasiewiczNet
+from ..layers.lukasiewicz_linear import LukasiewiczLinear
+
+
+def _collect_luk_layers(model: nn.Module) -> list[LukasiewiczLinear]:
+    """Return all LukasiewiczLinear sub-modules in any ŁNN architecture."""
+    return [m for m in model.modules() if isinstance(m, LukasiewiczLinear)]
 
 
 def _ternary_penalty(w: Tensor) -> Tensor:
@@ -50,7 +56,7 @@ class ProximalOptimizer(BaseOptimizer):
 
     Parameters
     ----------
-    model : LukasiewiczNet  (mode='clamp')
+    model : nn.Module       Any ŁNN (LukasiewiczNet or LukResidualNet) with mode='clamp'.
     lr : float
     lambda_sparse : float   L1 coeff (active only in Phase 2).
     lambda_attract : float  Ternary-attraction coeff (active in Phase 2).
@@ -60,15 +66,17 @@ class ProximalOptimizer(BaseOptimizer):
 
     def __init__(
         self,
-        model: LukasiewiczNet,
+        model: nn.Module,
         lr: float = 1e-2,
         lambda_sparse: float = 1e-3,
         lambda_attract: float = 0.1,
         prox_threshold: float = 5e-4,
         phase1_fraction: float = 0.6,
     ):
-        assert all(getattr(layer, "mode", None) == "clamp" for layer in model.layers), \
-            "ProximalOptimizer requires LukasiewiczNet with mode='clamp'"
+        luk_layers = _collect_luk_layers(model)
+        assert luk_layers and all(
+            layer.mode == "clamp" for layer in luk_layers
+        ), "ProximalOptimizer requires all LukasiewiczLinear layers with mode='clamp'"
 
         self.model = model
         self.lambda_sparse = lambda_sparse
@@ -197,5 +205,5 @@ class ProximalOptimizer(BaseOptimizer):
 
     def _project(self) -> None:
         with torch.no_grad():
-            for layer in self.model.layers:
+            for layer in _collect_luk_layers(self.model):
                 layer.weight.data.clamp_(-1.0, 1.0)

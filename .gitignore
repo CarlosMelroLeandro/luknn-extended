@@ -52,6 +52,9 @@ logs/
 *.fls
 *.fdb_latexmk
 
+# Paper manuscript — not published yet
+papers/
+
 # Old / intermediate working files — not part of the public release
 paper.tex
 paper.pdf

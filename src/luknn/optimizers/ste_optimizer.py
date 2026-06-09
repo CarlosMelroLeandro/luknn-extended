@@ -24,7 +24,12 @@ import torch.nn.functional as F
 from torch import Tensor
 
 from .base import BaseOptimizer, TrainingResult
-from ..layers.lukasiewicz_linear import LukasiewiczNet
+from ..layers.lukasiewicz_linear import LukasiewiczLinear
+
+
+def _collect_luk_layers(model: nn.Module) -> list[LukasiewiczLinear]:
+    """Return all LukasiewiczLinear sub-modules in any ŁNN architecture."""
+    return [m for m in model.modules() if isinstance(m, LukasiewiczLinear)]
 
 
 class STEOptimizer(BaseOptimizer):
@@ -33,7 +38,7 @@ class STEOptimizer(BaseOptimizer):
 
     Parameters
     ----------
-    model : LukasiewiczNet  (mode='ste')
+    model : nn.Module       Any ŁNN (LukasiewiczNet or LukResidualNet) with mode='ste'.
     lr : float              Adam learning rate.
     weight_lr : float       Separate LR for biases (None → same as lr).
     clip_grad : float       Gradient norm clipping (0 = disabled).
@@ -41,15 +46,15 @@ class STEOptimizer(BaseOptimizer):
 
     def __init__(
         self,
-        model: LukasiewiczNet,
+        model: nn.Module,
         lr: float = 5e-3,
         weight_lr: float | None = None,
         clip_grad: float = 1.0,
     ):
-        assert all(
-            getattr(layer, "mode", None) == "ste"
-            for layer in model.layers
-        ), "STEOptimizer requires LukasiewiczNet with mode='ste'"
+        luk_layers = _collect_luk_layers(model)
+        assert luk_layers and all(
+            layer.mode == "ste" for layer in luk_layers
+        ), "STEOptimizer requires all LukasiewiczLinear layers with mode='ste'"
 
         self.model = model
         self.clip_grad = clip_grad
@@ -105,7 +110,7 @@ class STEOptimizer(BaseOptimizer):
             scheduler.step()
 
             with torch.no_grad():
-                for layer in self.model.layers:
+                for layer in _collect_luk_layers(self.model):
                     layer.weight.data.clamp_(-1.5, 1.5)
 
             mse = loss.item()

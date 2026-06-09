@@ -37,8 +37,12 @@ _OPTIMIZER_MODE = {
     "LM": "continuous",
     "LM_Residual": "continuous",
     "STE": "ste",
+    "STE_Residual": "ste",
     "Proximal": "clamp",
+    "Proximal_Residual": "clamp",
 }
+
+_RESIDUAL_METHODS = {"LM_Residual", "STE_Residual", "Proximal_Residual"}
 
 
 class BenchmarkRunner:
@@ -78,7 +82,7 @@ class BenchmarkRunner:
         # Use actual dataset feature count (overrides config n_inputs for real datasets)
         n_inputs = dataset.n_features if dataset.n_features != cfg.n_inputs else cfg.n_inputs
 
-        if method == "LM_Residual":
+        if method in _RESIDUAL_METHODS:
             model = LukResidualNet(
                 n_inputs=n_inputs,
                 hidden_width=cfg.hidden_width,
@@ -142,9 +146,9 @@ class BenchmarkRunner:
     def _build_optimizer(model, method: str, params: dict):
         if method in ("LM", "LM_Residual"):
             return LMOptimizer(model, **params)
-        elif method == "STE":
+        elif method in ("STE", "STE_Residual"):
             return STEOptimizer(model, **params)
-        elif method == "Proximal":
+        elif method in ("Proximal", "Proximal_Residual"):
             return ProximalOptimizer(model, **params)
         else:
             raise ValueError(f"Unknown optimizer method: {method!r}")

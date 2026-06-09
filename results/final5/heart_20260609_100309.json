@@ -1,0 +1,914 @@
+{
+  "dataset": "heart",
+  "best_params": {
+    "lm_residual": {
+      "hidden_width": 4,
+      "mu_init": 0.01
+    },
+    "ste": {
+      "hidden_layers": [
+        4,
+        4
+      ],
+      "lr": 0.01
+    },
+    "ste_residual": {
+      "lr": 0.001,
+      "hidden_width": 6,
+      "n_blocks": 2
+    },
+    "proximal": {
+      "hidden_layers": [
+        4,
+        4
+      ],
+      "lr": 0.005,
+      "lambda_sparse": 0.0001
+    },
+    "proximal_residual": {
+      "lr": 0.005,
+      "lambda_sparse": 0.0001,
+      "hidden_width": 6
+    }
+  },
+  "stats": {
+    "accuracy": {
+      "lm_residual": {
+        "mean": 0.5916666805744171,
+        "std": 0.12177950334945851
+      },
+      "ste": {
+        "mean": 0.6066666781902313,
+        "std": 0.10128800401909613
+      },
+      "ste_residual": {
+        "mean": 0.5583333432674408,
+        "std": 0.0875771312077704
+      },
+      "proximal": {
+        "mean": 0.6000000238418579,
+        "std": 0.0
+      },
+      "proximal_residual": {
+        "mean": 0.6000000238418579,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.71875,
+        "STE/STEr": 0.1953125,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.3125
+      }
+    },
+    "f1": {
+      "lm_residual": {
+        "mean": 0.4621352170051474,
+        "std": 0.32501813634507687
+      },
+      "ste": {
+        "mean": 0.4821039811751714,
+        "std": 0.3368471395696751
+      },
+      "ste_residual": {
+        "mean": 0.27201508255637546,
+        "std": 0.32990815145387503
+      },
+      "proximal": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "proximal_residual": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.51953125,
+        "STE/STEr": 0.203125,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.0625
+      }
+    },
+    "final_mse": {
+      "lm_residual": {
+        "mean": 0.35383238941431044,
+        "std": 0.15064579179394955
+      },
+      "ste": {
+        "mean": 0.3137115746736526,
+        "std": 0.1536379198979349
+      },
+      "ste_residual": {
+        "mean": 0.41283451169729235,
+        "std": 0.13380287754606518
+      },
+      "proximal": {
+        "mean": 0.47325101494789124,
+        "std": 0.0
+      },
+      "proximal_residual": {
+        "mean": 0.47325101494789124,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.49609375,
+        "STE/STEr": 0.12890625,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.4375
+      }
+    },
+    "lambda_similarity": {
+      "lm_residual": {
+        "mean": 0.701368950098235,
+        "std": 0.09794376710796796
+      },
+      "ste": {
+        "mean": 0.7062729826826869,
+        "std": 0.07837479907447051
+      },
+      "ste_residual": {
+        "mean": 0.6652966420891104,
+        "std": 0.0580471966028152
+      },
+      "proximal": {
+        "mean": 0.6703200420402204,
+        "std": 0.0
+      },
+      "proximal_residual": {
+        "mean": 0.6703200420402204,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.91015625,
+        "STE/STEr": 0.12890625,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.84375
+      }
+    },
+    "total_time_s": {
+      "lm_residual": {
+        "mean": 2.2450636840999323,
+        "std": 1.9222503444620138
+      },
+      "ste": {
+        "mean": 1.0024743828998908,
+        "std": 0.9365520686327133
+      },
+      "ste_residual": {
+        "mean": 2.7924716573998922,
+        "std": 0.8416418615917957
+      },
+      "proximal": {
+        "mean": 0.2255911589999414,
+        "std": 0.05086931993555987
+      },
+      "proximal_residual": {
+        "mean": 0.16215731980000783,
+        "std": 0.038285473321451303
+      },
+      "p_values": {
+        "LM/STE": 0.064453125,
+        "STE/STEr": 0.001953125,
+        "PRX/PRXr": 0.005859375,
+        "STEr/PRXr": 0.001953125
+      }
+    },
+    "iterations": {
+      "lm_residual": {
+        "mean": 95.7,
+        "std": 247.89964367326817
+      },
+      "ste": {
+        "mean": 175.0,
+        "std": 163.12844291811558
+      },
+      "ste_residual": {
+        "mean": 459.0,
+        "std": 141.83010180415783
+      },
+      "proximal": {
+        "mean": 38.8,
+        "std": 6.762642481555071
+      },
+      "proximal_residual": {
+        "mean": 29.3,
+        "std": 5.271516754112509
+      },
+      "p_values": {
+        "LM/STE": 0.10546875,
+        "STE/STEr": 0.0078125,
+        "PRX/PRXr": 0.00390625,
+        "STEr/PRXr": 0.001953125
+      }
+    }
+  },
+  "lm_residual": [
+    {
+      "method": "LM_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 0,
+      "final_mse": 0.5267489552497864,
+      "accuracy": 0.4000000059604645,
+      "f1": 0.5714285714285714,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5488116230093375,
+      "total_time_s": 0.5901985399996192,
+      "iterations": 5,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 1,
+      "final_mse": 0.22218967974185944,
+      "accuracy": 0.550000011920929,
+      "f1": 0.6511627906976745,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7599717217824669,
+      "total_time_s": 0.5541931830002795,
+      "iterations": 4,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 2,
+      "final_mse": 0.22705842554569244,
+      "accuracy": 0.6666666865348816,
+      "f1": 0.6530612244897959,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7595165921339511,
+      "total_time_s": 1.590352487999553,
+      "iterations": 15,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 3,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 1.2539269729995794,
+      "iterations": 12,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 4,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.7649389859998337,
+      "iterations": 7,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 5,
+      "final_mse": 0.5267489552497864,
+      "accuracy": 0.4000000059604645,
+      "f1": 0.5714285714285714,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5488116230093375,
+      "total_time_s": 5.8959050200001,
+      "iterations": 55,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 6,
+      "final_mse": 0.20462098717689514,
+      "accuracy": 0.6166666746139526,
+      "f1": 0.7,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7519826570751628,
+      "total_time_s": 2.6510785430000396,
+      "iterations": 24,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 7,
+      "final_mse": 0.2376539409160614,
+      "accuracy": 0.6833333373069763,
+      "f1": 0.6818181818181818,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7960413760451308,
+      "total_time_s": 1.861326614999598,
+      "iterations": 17,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 8,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 48.80410385131836,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 5.4470274790000985,
+      "iterations": 800,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 9,
+      "final_mse": 0.17354990541934967,
+      "accuracy": 0.800000011920929,
+      "f1": 0.7924528301886793,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.8375937818063021,
+      "total_time_s": 1.8416890140006217,
+      "iterations": 18,
+      "converged": true
+    }
+  ],
+  "ste": [
+    {
+      "method": "STE",
+      "dataset": "heart_disease_cleveland",
+      "trial": 0,
+      "final_mse": 0.2877768874168396,
+      "accuracy": 0.4833333194255829,
+      "f1": 0.6388888888888888,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6505947654580336,
+      "total_time_s": 0.4369966169997497,
+      "iterations": 76,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "heart_disease_cleveland",
+      "trial": 1,
+      "final_mse": 0.16865213215351105,
+      "accuracy": 0.6833333373069763,
+      "f1": 0.7272727272727273,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.778553124568912,
+      "total_time_s": 0.6011324600003718,
+      "iterations": 109,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "heart_disease_cleveland",
+      "trial": 2,
+      "final_mse": 0.1959248036146164,
+      "accuracy": 0.6666666865348816,
+      "f1": 0.7333333333333333,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7636062738771091,
+      "total_time_s": 1.0492249909993916,
+      "iterations": 182,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "heart_disease_cleveland",
+      "trial": 3,
+      "final_mse": 0.18558365106582642,
+      "accuracy": 0.699999988079071,
+      "f1": 0.6818181818181818,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7890503070668518,
+      "total_time_s": 0.19707465000010416,
+      "iterations": 35,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "heart_disease_cleveland",
+      "trial": 4,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.291291296000054,
+      "iterations": 51,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "heart_disease_cleveland",
+      "trial": 5,
+      "final_mse": 0.1545458436012268,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.7096774193548387,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7270352158914494,
+      "total_time_s": 0.26854148100028397,
+      "iterations": 47,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "heart_disease_cleveland",
+      "trial": 6,
+      "final_mse": 0.19813042879104614,
+      "accuracy": 0.7333333492279053,
+      "f1": 0.7586206896551724,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7941183908345154,
+      "total_time_s": 0.24606638899967948,
+      "iterations": 41,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "heart_disease_cleveland",
+      "trial": 7,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 2.359418271999857,
+      "iterations": 407,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "heart_disease_cleveland",
+      "trial": 8,
+      "final_mse": 0.5267489552497864,
+      "accuracy": 0.4000000059604645,
+      "f1": 0.5714285714285714,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5488116230093375,
+      "total_time_s": 2.319191515000057,
+      "iterations": 401,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "heart_disease_cleveland",
+      "trial": 9,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 2.255806157999359,
+      "iterations": 401,
+      "converged": false
+    }
+  ],
+  "ste_residual": [
+    {
+      "method": "STE_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 0,
+      "final_mse": 0.18535563349723816,
+      "accuracy": 0.6499999761581421,
+      "f1": 0.6885245901639344,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7432715437269225,
+      "total_time_s": 1.450097148000168,
+      "iterations": 230,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 1,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 2.4027470700002596,
+      "iterations": 401,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 2,
+      "final_mse": 0.47357815504074097,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6741866102705671,
+      "total_time_s": 3.5176124299996445,
+      "iterations": 565,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 3,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 2.3904064499993183,
+      "iterations": 401,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 4,
+      "final_mse": 0.19600413739681244,
+      "accuracy": 0.6166666746139526,
+      "f1": 0.6792452830188679,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7399629145288341,
+      "total_time_s": 3.408038704000319,
+      "iterations": 567,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 5,
+      "final_mse": 0.30291512608528137,
+      "accuracy": 0.5,
+      "f1": 0.6666666666666666,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6701422495091606,
+      "total_time_s": 4.543397524999818,
+      "iterations": 759,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 6,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 2.356056218000049,
+      "iterations": 412,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 7,
+      "final_mse": 0.5267489552497864,
+      "accuracy": 0.4000000059604645,
+      "f1": 0.5714285714285714,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5488116230093375,
+      "total_time_s": 2.5457997599996816,
+      "iterations": 401,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 8,
+      "final_mse": 0.550739049911499,
+      "accuracy": 0.4166666567325592,
+      "f1": 0.11428571428571428,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5953113116853997,
+      "total_time_s": 2.667459778999728,
+      "iterations": 453,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 9,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 2.6431014899999354,
+      "iterations": 401,
+      "converged": false
+    }
+  ],
+  "proximal": [
+    {
+      "method": "Proximal",
+      "dataset": "heart_disease_cleveland",
+      "trial": 0,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.20865494100053184,
+      "iterations": 39,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "heart_disease_cleveland",
+      "trial": 1,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.1843391470001734,
+      "iterations": 31,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "heart_disease_cleveland",
+      "trial": 2,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.2675314569996772,
+      "iterations": 36,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "heart_disease_cleveland",
+      "trial": 3,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.21986013599962462,
+      "iterations": 37,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "heart_disease_cleveland",
+      "trial": 4,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.14063777499995922,
+      "iterations": 30,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "heart_disease_cleveland",
+      "trial": 5,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.3075528299996222,
+      "iterations": 48,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "heart_disease_cleveland",
+      "trial": 6,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.2119638180001857,
+      "iterations": 37,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "heart_disease_cleveland",
+      "trial": 7,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.23024789299961412,
+      "iterations": 43,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "heart_disease_cleveland",
+      "trial": 8,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.19361997099986183,
+      "iterations": 36,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "heart_disease_cleveland",
+      "trial": 9,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.2915036220001639,
+      "iterations": 51,
+      "converged": false
+    }
+  ],
+  "proximal_residual": [
+    {
+      "method": "Proximal_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 0,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.10831323599995812,
+      "iterations": 23,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 1,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.13493691699932242,
+      "iterations": 31,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 2,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.1524828179999531,
+      "iterations": 34,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 3,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.17411892600011925,
+      "iterations": 26,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 4,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.17953761000080704,
+      "iterations": 29,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 5,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.1677878629998304,
+      "iterations": 31,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 6,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.1561108490004699,
+      "iterations": 26,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 7,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.14836517200001254,
+      "iterations": 25,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 8,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.1456618639995213,
+      "iterations": 27,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "heart_disease_cleveland",
+      "trial": 9,
+      "final_mse": 0.47325101494789124,
+      "accuracy": 0.6000000238418579,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6703200420402204,
+      "total_time_s": 0.2542579430000842,
+      "iterations": 41,
+      "converged": false
+    }
+  ]
+}
