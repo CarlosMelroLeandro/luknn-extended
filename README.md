@@ -112,7 +112,6 @@ luknn-extended/
 ├── logs/                   # Training logs (git-ignored)
 ├── tests/                  # pytest test suite
 │
-├── paper.tex / paper.pdf   # Manuscript (main submission)
 ├── RESIDUAL_THEORY.md      # Mathematical derivation of the residual block
 ├── REPORT.md               # Experimental narrative
 ├── references.bib          # BibTeX bibliography

@@ -9,7 +9,7 @@ description = "Łukasiewicz Neural Networks Extended: residual architectures and
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
-  { name = "Carlos Leandro", email = "carlos.leandro@solidreturn.dev" }
+  { name = "Carlos Leandro", email = "carlos.leandro@dm.isel.pt" }
 ]
 keywords = ["neuro-symbolic", "lukasiewicz", "interpretable-ml", "rule-extraction", "neural-networks"]
 classifiers = [
