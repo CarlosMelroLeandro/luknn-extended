@@ -1,0 +1,23 @@
+% === Table: λ-similarity by configuration × dataset (B3) ===
+\begin{table}[t]
+\caption{$\lambda$-similarity (mean\,$\pm$\,std) and crystallization rates across all configurations and datasets ($n=10$ trials each). ``Exact'' counts trials where $\lambda > 0.99$, i.e.\ the extracted formula satisfies Proposition~1 without approximation.}
+\label{tab:lambda}
+\centering
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{l ccc ccc ccc ccc ccc}
+\toprule
+& \multicolumn{3}{c}{LM-Res} & \multicolumn{3}{c}{STE-Flat} & \multicolumn{3}{c}{STE-Res} & \multicolumn{3}{c}{Prox-Flat} & \multicolumn{3}{c}{Prox-Res} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}\cmidrule(lr){11-13}\cmidrule(lr){14-16}
+Dataset & $\lambda$ & C & E & $\lambda$ & C & E & $\lambda$ & C & E & $\lambda$ & C & E & $\lambda$ & C & E \\
+\midrule
+Mushroom & 0.728$\pm$0.036 & 6/10 & 0/10 & 0.726$\pm$0.038 & 10/10 & 0/10 & 0.696$\pm$0.065 & 10/10 & 0/10 & 0.712$\pm$0.000 & 10/10 & 0/10 & 0.712$\pm$0.000 & 10/10 & 0/10 \\
+Heart & 0.701$\pm$0.098 & 9/10 & 0/10 & 0.706$\pm$0.078 & 10/10 & 0/10 & 0.665$\pm$0.058 & 10/10 & 0/10 & 0.670$\pm$0.000 & 10/10 & 0/10 & 0.670$\pm$0.000 & 10/10 & 0/10 \\
+MONK-1 & 0.710$\pm$0.087 & 5/10 & 0/10 & 0.675$\pm$0.088 & 10/10 & 0/10 & 0.726$\pm$0.084 & 10/10 & 0/10 & 0.648$\pm$0.088 & 10/10 & 0/10 & 0.607$\pm$0.000 & 10/10 & 0/10 \\
+MONK-2 & 0.740$\pm$0.080 & 7/10 & 0/10 & 0.746$\pm$0.055 & 10/10 & 0/10 & 0.715$\pm$0.098 & 10/10 & 0/10 & 0.720$\pm$0.000 & 10/10 & 0/10 & 0.720$\pm$0.000 & 10/10 & 0/10 \\
+MONK-3 & 0.766$\pm$0.160 & 10/10 & 0/10 & 0.735$\pm$0.115 & 10/10 & 0/10 & 0.761$\pm$0.107 & 10/10 & 0/10 & 0.590$\pm$0.000 & 10/10 & 0/10 & 0.590$\pm$0.000 & 10/10 & 0/10 \\
+Breast Cancer & 0.683$\pm$0.000 & 0/10 & 0/10 & 0.670$\pm$0.050 & 10/10 & 0/10 & 0.684$\pm$0.056 & 10/10 & 0/10 & 0.692$\pm$0.000 & 10/10 & 0/10 & 0.692$\pm$0.000 & 10/10 & 0/10 \\
+\midrule
+\multicolumn{16}{l}{\small C\,=\,crystallized/10;\;E\,=\,exact ($\lambda>0.99$)/10} \\
+\bottomrule
+\end{tabular}
+\end{table}

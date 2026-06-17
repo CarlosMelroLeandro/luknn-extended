@@ -36,6 +36,8 @@ class Dataset:
     n_features: int
     name: str
     feature_names: list[str] | None = None
+    X_val: Tensor | None = None
+    y_val: Tensor | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -166,6 +168,7 @@ _MUSHROOM_COLS = [
 def load_mushroom(
     data_dir: str | Path = "data/real/mushroom",
     test_fraction: float = 0.2,
+    val_fraction: float = 0.0,
     enrich: bool = True,
     seed: int = 42,
 ) -> Dataset:
@@ -201,17 +204,101 @@ def load_mushroom(
     rng = np.random.default_rng(seed)
     idx = rng.permutation(len(y))
     n_test = int(len(y) * test_fraction)
+    train_all = idx[n_test:]
+    test_idx  = idx[:n_test]
 
-    X_tr = torch.tensor(X[idx[n_test:]], dtype=torch.float32)
-    y_tr = torch.tensor(y[idx[n_test:]], dtype=torch.float32)
-    X_te = torch.tensor(X[idx[:n_test]], dtype=torch.float32)
-    y_te = torch.tensor(y[idx[:n_test]], dtype=torch.float32)
+    if val_fraction > 0:
+        n_val    = max(1, int(len(train_all) * val_fraction))
+        val_idx  = train_all[:n_val]
+        tr_idx   = train_all[n_val:]
+    else:
+        val_idx  = None
+        tr_idx   = train_all
 
     return Dataset(
-        X_train=X_tr, y_train=y_tr,
-        X_test=X_te, y_test=y_te,
+        X_train=torch.tensor(X[tr_idx],   dtype=torch.float32),
+        y_train=torch.tensor(y[tr_idx],   dtype=torch.float32),
+        X_test =torch.tensor(X[test_idx], dtype=torch.float32),
+        y_test =torch.tensor(y[test_idx], dtype=torch.float32),
         n_features=X.shape[1],
         name="mushroom",
+        X_val=torch.tensor(X[val_idx], dtype=torch.float32) if val_idx is not None else None,
+        y_val=torch.tensor(y[val_idx], dtype=torch.float32) if val_idx is not None else None,
+    )
+
+
+def load_mushroom_grouped(
+    data_dir: str | Path = "data/real/mushroom",
+    test_fraction: float = 0.2,
+    val_fraction: float = 0.0,
+    enrich: bool = True,
+    seed: int = 42,
+) -> Dataset:
+    """
+    Mushroom dataset with reduced fan-in: 22 features instead of 111.
+
+    Instead of one-hot encoding each categorical attribute (→ 111 binary
+    columns), each of the 22 attributes is encoded as a single integer label
+    normalised to [0, 1].  This keeps the input in the Łukasiewicz truth-value
+    range while reducing the fan-in from 111 to 22, making each surviving
+    weight ~5× larger and more likely to survive crystallisation to ±1.
+
+    All other options (enrich, splits, seed) are identical to load_mushroom().
+    """
+    import pandas as pd
+    from sklearn.preprocessing import LabelEncoder
+
+    data_dir = Path(data_dir)
+    raw_path = data_dir / "agaricus-lepiota.data"
+
+    if not raw_path.exists():
+        import urllib.request
+        data_dir.mkdir(parents=True, exist_ok=True)
+        urllib.request.urlretrieve(_MUSHROOM_URL, raw_path)
+
+    df = pd.read_csv(raw_path, header=None, names=_MUSHROOM_COLS)
+    y = (df["class"] == "e").astype(float).values
+    feat_cols = [c for c in df.columns if c != "class"]
+    df_feat = df[feat_cols].replace("?", np.nan).fillna(
+        df[feat_cols].mode().iloc[0]
+    )
+
+    parts = []
+    for c in feat_cols:
+        le = LabelEncoder()
+        enc = le.fit_transform(df_feat[c]).astype(float)
+        n_cats = len(le.classes_)
+        parts.append((enc / max(n_cats - 1, 1)).reshape(-1, 1))
+    X = np.hstack(parts)  # shape (n_samples, 22)
+
+    if enrich:
+        pos_mask = y == 1
+        X = np.vstack([X, X[pos_mask] * 0.5])
+        y = np.concatenate([y, np.zeros(pos_mask.sum())])
+
+    rng = np.random.default_rng(seed)
+    idx = rng.permutation(len(y))
+    n_test = int(len(y) * test_fraction)
+    train_all = idx[n_test:]
+    test_idx  = idx[:n_test]
+
+    if val_fraction > 0:
+        n_val   = max(1, int(len(train_all) * val_fraction))
+        val_idx = train_all[:n_val]
+        tr_idx  = train_all[n_val:]
+    else:
+        val_idx = None
+        tr_idx  = train_all
+
+    return Dataset(
+        X_train=torch.tensor(X[tr_idx],   dtype=torch.float32),
+        y_train=torch.tensor(y[tr_idx],   dtype=torch.float32),
+        X_test =torch.tensor(X[test_idx], dtype=torch.float32),
+        y_test =torch.tensor(y[test_idx], dtype=torch.float32),
+        n_features=X.shape[1],
+        name="mushroom_grouped",
+        X_val=torch.tensor(X[val_idx], dtype=torch.float32) if val_idx is not None else None,
+        y_val=torch.tensor(y[val_idx], dtype=torch.float32) if val_idx is not None else None,
     )
 
 
@@ -332,6 +419,7 @@ def load_heart_disease(
     data_dir: str | Path = "data/real/heart",
     subset: str = "cleveland",
     test_fraction: float = 0.2,
+    val_fraction: float = 0.0,
     seed: int = 42,
 ) -> Dataset:
     """
@@ -396,9 +484,18 @@ def load_heart_disease(
     n = len(df)
     idx = rng.permutation(n)
     n_test = max(1, int(n * test_fraction))
-    train_idx, test_idx = idx[n_test:], idx[:n_test]
+    train_all = idx[n_test:]
+    test_idx  = idx[:n_test]
 
-    # We fit scalers on training rows only
+    if val_fraction > 0:
+        n_val    = max(1, int(len(train_all) * val_fraction))
+        val_idx  = train_all[:n_val]
+        train_idx = train_all[n_val:]
+    else:
+        val_idx   = None
+        train_idx = train_all
+
+    # Fit scalers on train_proper only (never on val or test)
     train_mask = np.zeros(n, dtype=bool)
     train_mask[train_idx] = True
 
@@ -432,17 +529,16 @@ def load_heart_disease(
 
     X = np.hstack(parts)
 
-    X_tr = torch.tensor(X[train_idx], dtype=torch.float32)
-    y_tr = torch.tensor(y[train_idx], dtype=torch.float32)
-    X_te = torch.tensor(X[test_idx], dtype=torch.float32)
-    y_te = torch.tensor(y[test_idx], dtype=torch.float32)
-
     return Dataset(
-        X_train=X_tr, y_train=y_tr,
-        X_test=X_te, y_test=y_te,
+        X_train=torch.tensor(X[train_idx], dtype=torch.float32),
+        y_train=torch.tensor(y[train_idx], dtype=torch.float32),
+        X_test =torch.tensor(X[test_idx],  dtype=torch.float32),
+        y_test =torch.tensor(y[test_idx],  dtype=torch.float32),
         n_features=X.shape[1],
         name=f"heart_disease_{subset}",
         feature_names=feat_names,
+        X_val=torch.tensor(X[val_idx], dtype=torch.float32) if val_idx is not None else None,
+        y_val=torch.tensor(y[val_idx], dtype=torch.float32) if val_idx is not None else None,
     )
 
 
@@ -565,6 +661,49 @@ def load_monk(
     )
 
 
+def load_monk_grouped(
+    problem: int = 1,
+    seed: int = 42,
+) -> Dataset:
+    """
+    MONK problem with reduced fan-in: 6 ordinal features instead of 17.
+
+    Each of the 6 categorical attributes is encoded as a single value
+    normalised to [0, 1]:  (raw_value - 1) / (cardinality - 1).
+    This keeps inputs in the Łukasiewicz truth-value range while reducing
+    fan-in from 17 to 6, making surviving weights ~3× larger and more
+    likely to survive crystallisation.
+
+    All other generation options (split, seed, noise) are identical to
+    load_monk().
+    """
+    if problem not in (1, 2, 3):
+        raise ValueError("problem must be 1, 2, or 3")
+
+    X_tr_raw, y_tr, X_te_raw, y_te = _generate_monk(problem, seed)
+
+    def ordinal(X_raw: np.ndarray) -> np.ndarray:
+        parts = []
+        for col_idx, n_vals in enumerate(_MONK_CARDINALITIES):
+            col = (X_raw[:, col_idx] - 1).astype(float)
+            col = col / max(n_vals - 1, 1)      # normalise to [0, 1]
+            parts.append(col.reshape(-1, 1))
+        return np.hstack(parts)
+
+    X_tr = ordinal(X_tr_raw)
+    X_te = ordinal(X_te_raw)
+
+    return Dataset(
+        X_train=torch.tensor(X_tr, dtype=torch.float32),
+        y_train=torch.tensor(y_tr, dtype=torch.float32),
+        X_test=torch.tensor(X_te, dtype=torch.float32),
+        y_test=torch.tensor(y_te, dtype=torch.float32),
+        n_features=X_tr.shape[1],
+        name=f"monk_{problem}_grouped",
+        feature_names=_MONK_ATTR_NAMES,
+    )
+
+
 # ---------------------------------------------------------------------------
 # Breast Cancer Ljubljana (UCI)
 # ---------------------------------------------------------------------------
@@ -594,6 +733,7 @@ _BREAST_NOMINAL = ["menopause", "node_caps", "breast", "breast_quad", "irradiat"
 def load_breast_cancer(
     data_dir: str | Path = "data/real/breast_cancer",
     test_fraction: float = 0.2,
+    val_fraction: float = 0.0,
     seed: int = 42,
 ) -> Dataset:
     """
@@ -652,16 +792,270 @@ def load_breast_cancer(
     rng = np.random.default_rng(seed)
     idx = rng.permutation(len(y))
     n_test = max(1, int(len(y) * test_fraction))
-    tr_idx, te_idx = idx[n_test:], idx[:n_test]
+    train_all = idx[n_test:]
+    te_idx    = idx[:n_test]
+
+    if val_fraction > 0:
+        n_val    = max(1, int(len(train_all) * val_fraction))
+        val_idx  = train_all[:n_val]
+        tr_idx   = train_all[n_val:]
+    else:
+        val_idx  = None
+        tr_idx   = train_all
 
     return Dataset(
         X_train=torch.tensor(X[tr_idx], dtype=torch.float32),
         y_train=torch.tensor(y[tr_idx], dtype=torch.float32),
-        X_test=torch.tensor(X[te_idx], dtype=torch.float32),
-        y_test=torch.tensor(y[te_idx], dtype=torch.float32),
+        X_test =torch.tensor(X[te_idx], dtype=torch.float32),
+        y_test =torch.tensor(y[te_idx], dtype=torch.float32),
         n_features=X.shape[1],
         name="breast_cancer",
         feature_names=feat_names,
+        X_val=torch.tensor(X[val_idx], dtype=torch.float32) if val_idx is not None else None,
+        y_val=torch.tensor(y[val_idx], dtype=torch.float32) if val_idx is not None else None,
+    )
+
+
+def load_bc_grouped(
+    data_dir: str | Path = "data/real/breast_cancer",
+    test_fraction: float = 0.2,
+    val_fraction: float = 0.0,
+    seed: int = 42,
+) -> Dataset:
+    """
+    Breast Cancer dataset with reduced fan-in: 9 features instead of 15.
+
+    The standard loader one-hot encodes the 5 nominal attributes
+    (menopause, node_caps, breast, breast_quad, irradiat) producing 11
+    extra columns.  Here every attribute is represented as a single value
+    normalised to [0, 1]:
+      • Ordinal attrs: same rank encoding as load_breast_cancer().
+      • Nominal attrs: LabelEncoder integer / (n_classes − 1).
+
+    This reduces fan-in from 15 to 9 while keeping all inputs in the
+    Łukasiewicz truth-value range.
+    """
+    import pandas as pd
+    from sklearn.preprocessing import LabelEncoder
+
+    data_dir = Path(data_dir)
+    raw_path = data_dir / "breast-cancer.data"
+
+    if not raw_path.exists():
+        import urllib.request
+        data_dir.mkdir(parents=True, exist_ok=True)
+        urllib.request.urlretrieve(_BREAST_URL, raw_path)
+
+    df = pd.read_csv(raw_path, header=None, names=_BREAST_COLS, na_values="?")
+    y = (df["class"] == "recurrence-events").astype(float).values
+    df = df.drop(columns=["class"])
+
+    for col in df.columns:
+        if df[col].isnull().any():
+            df[col] = df[col].fillna(df[col].mode().iloc[0])
+
+    parts: list[np.ndarray] = []
+
+    # Ordinal attributes: same encoding as load_breast_cancer
+    for col, levels in _BREAST_ORDINAL.items():
+        levels_str = [str(l) for l in levels]
+        rank_map = {v: i / (len(levels_str) - 1) for i, v in enumerate(levels_str)}
+        vals = df[col].astype(str).map(rank_map).fillna(0.5).values.reshape(-1, 1)
+        parts.append(vals)
+
+    # Nominal attributes: ordinal (LabelEncoder) normalised to [0, 1]
+    for col in _BREAST_NOMINAL:
+        le = LabelEncoder()
+        enc = le.fit_transform(df[col].astype(str).values).astype(float)
+        n_cls = len(le.classes_)
+        parts.append((enc / max(n_cls - 1, 1)).reshape(-1, 1))
+
+    X = np.hstack(parts)   # shape (286, 9)
+
+    rng = np.random.default_rng(seed)
+    idx = rng.permutation(len(y))
+    n_test = max(1, int(len(y) * test_fraction))
+    train_all = idx[n_test:]
+    te_idx    = idx[:n_test]
+
+    if val_fraction > 0:
+        n_val   = max(1, int(len(train_all) * val_fraction))
+        val_idx = train_all[:n_val]
+        tr_idx  = train_all[n_val:]
+    else:
+        val_idx = None
+        tr_idx  = train_all
+
+    return Dataset(
+        X_train=torch.tensor(X[tr_idx], dtype=torch.float32),
+        y_train=torch.tensor(y[tr_idx], dtype=torch.float32),
+        X_test =torch.tensor(X[te_idx], dtype=torch.float32),
+        y_test =torch.tensor(y[te_idx], dtype=torch.float32),
+        n_features=X.shape[1],
+        name="breast_cancer_grouped",
+        feature_names=list(_BREAST_ORDINAL.keys()) + _BREAST_NOMINAL,
+        X_val=torch.tensor(X[val_idx], dtype=torch.float32) if val_idx is not None else None,
+        y_val=torch.tensor(y[val_idx], dtype=torch.float32) if val_idx is not None else None,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Spambase (UCI)
+# ---------------------------------------------------------------------------
+
+_SPAMBASE_URL = (
+    "https://archive.ics.uci.edu/ml/machine-learning-databases/"
+    "spambase/spambase.data"
+)
+
+# 57 feature names (from spambase.names)
+_SPAMBASE_FEATURES = [
+    "word_freq_make", "word_freq_address", "word_freq_all", "word_freq_3d",
+    "word_freq_our", "word_freq_over", "word_freq_remove", "word_freq_internet",
+    "word_freq_order", "word_freq_mail", "word_freq_receive", "word_freq_will",
+    "word_freq_people", "word_freq_report", "word_freq_addresses",
+    "word_freq_free", "word_freq_business", "word_freq_email", "word_freq_you",
+    "word_freq_credit", "word_freq_your", "word_freq_font", "word_freq_000",
+    "word_freq_money", "word_freq_hp", "word_freq_hpl", "word_freq_george",
+    "word_freq_650", "word_freq_lab", "word_freq_labs", "word_freq_telnet",
+    "word_freq_857", "word_freq_data", "word_freq_415", "word_freq_85",
+    "word_freq_technology", "word_freq_1999", "word_freq_parts", "word_freq_pm",
+    "word_freq_direct", "word_freq_cs", "word_freq_meeting", "word_freq_original",
+    "word_freq_project", "word_freq_re", "word_freq_edu", "word_freq_table",
+    "word_freq_conference", "char_freq_semicolon", "char_freq_lparen",
+    "char_freq_lbracket", "char_freq_exclaim", "char_freq_dollar",
+    "char_freq_hash", "capital_run_length_average", "capital_run_length_longest",
+    "capital_run_length_total",
+]
+
+
+def load_spambase(
+    data_dir: str | Path = "data/real/spambase",
+    test_fraction: float = 0.2,
+    val_fraction: float = 0.0,
+    seed: int = 42,
+) -> Dataset:
+    """
+    Load and preprocess the UCI Spambase dataset.
+
+    4601 samples, 57 continuous features (word/char frequencies + capital stats).
+    Target: 1 = spam, 0 = not spam.
+    Features normalised to [0, 1] via MinMaxScaler (fit on train only).
+    No missing values.  Downloads automatically if not cached.
+    """
+    from sklearn.preprocessing import MinMaxScaler
+
+    data_dir = Path(data_dir)
+    raw_path = data_dir / "spambase.data"
+
+    if not raw_path.exists():
+        import urllib.request
+        data_dir.mkdir(parents=True, exist_ok=True)
+        urllib.request.urlretrieve(_SPAMBASE_URL, raw_path)
+
+    data = np.loadtxt(raw_path, delimiter=",")
+    X_raw = data[:, :57]
+    y = data[:, 57].astype(float)
+
+    rng = np.random.default_rng(seed)
+    idx = rng.permutation(len(y))
+    n_test = max(1, int(len(y) * test_fraction))
+    train_all = idx[n_test:]
+    te_idx    = idx[:n_test]
+
+    if val_fraction > 0:
+        n_val   = max(1, int(len(train_all) * val_fraction))
+        val_idx = train_all[:n_val]
+        tr_idx  = train_all[n_val:]
+    else:
+        val_idx = None
+        tr_idx  = train_all
+
+    scaler = MinMaxScaler()
+    scaler.fit(X_raw[tr_idx])
+    X = scaler.transform(X_raw).astype(float)
+
+    return Dataset(
+        X_train=torch.tensor(X[tr_idx], dtype=torch.float32),
+        y_train=torch.tensor(y[tr_idx], dtype=torch.float32),
+        X_test =torch.tensor(X[te_idx], dtype=torch.float32),
+        y_test =torch.tensor(y[te_idx], dtype=torch.float32),
+        n_features=X.shape[1],
+        name="spambase",
+        feature_names=_SPAMBASE_FEATURES,
+        X_val=torch.tensor(X[val_idx], dtype=torch.float32) if val_idx is not None else None,
+        y_val=torch.tensor(y[val_idx], dtype=torch.float32) if val_idx is not None else None,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Musk v2 (UCI)
+# ---------------------------------------------------------------------------
+
+_MUSK_URL = "https://archive.ics.uci.edu/static/public/75/data.csv"
+
+
+def load_musk(
+    data_dir: str | Path = "data/real/musk",
+    test_fraction: float = 0.2,
+    val_fraction: float = 0.0,
+    seed: int = 42,
+) -> Dataset:
+    """
+    Load and preprocess the UCI Musk (version 2) dataset.
+
+    6598 samples, 166 numeric features (conformational descriptors).
+    Target: 1 = musk molecule, 0 = non-musk.
+    First two columns (molecule_name, conformation_name) are dropped.
+    Features normalised to [0, 1] via MinMaxScaler (fit on train only).
+    No missing values.  Downloads automatically if not cached.
+    """
+    import pandas as pd
+    from sklearn.preprocessing import MinMaxScaler
+
+    data_dir = Path(data_dir)
+    raw_path = data_dir / "musk_v2.csv"
+
+    if not raw_path.exists():
+        import urllib.request
+        data_dir.mkdir(parents=True, exist_ok=True)
+        urllib.request.urlretrieve(_MUSK_URL, raw_path)
+
+    df = pd.read_csv(raw_path)
+    # Columns: molecule_name, conformation_name, f1..f166, class
+    feat_cols = [c for c in df.columns if c.startswith("f")]
+    X_raw = df[feat_cols].values.astype(float)
+    # class column may have trailing dots ("1." / "0.") — coerce via float
+    y = pd.to_numeric(df["class"], errors="coerce").fillna(0).values.astype(float)
+
+    rng = np.random.default_rng(seed)
+    idx = rng.permutation(len(y))
+    n_test = max(1, int(len(y) * test_fraction))
+    train_all = idx[n_test:]
+    te_idx    = idx[:n_test]
+
+    if val_fraction > 0:
+        n_val   = max(1, int(len(train_all) * val_fraction))
+        val_idx = train_all[:n_val]
+        tr_idx  = train_all[n_val:]
+    else:
+        val_idx = None
+        tr_idx  = train_all
+
+    scaler = MinMaxScaler()
+    scaler.fit(X_raw[tr_idx])
+    X = scaler.transform(X_raw).astype(float)
+
+    return Dataset(
+        X_train=torch.tensor(X[tr_idx], dtype=torch.float32),
+        y_train=torch.tensor(y[tr_idx], dtype=torch.float32),
+        X_test =torch.tensor(X[te_idx], dtype=torch.float32),
+        y_test =torch.tensor(y[te_idx], dtype=torch.float32),
+        n_features=X.shape[1],
+        name="musk",
+        feature_names=[f"f{i+1}" for i in range(166)],
+        X_val=torch.tensor(X[val_idx], dtype=torch.float32) if val_idx is not None else None,
+        y_val=torch.tensor(y[val_idx], dtype=torch.float32) if val_idx is not None else None,
     )
 
 
@@ -671,29 +1065,35 @@ def load_breast_cancer(
 
 def load_dataset(config) -> Dataset:
     """Dispatch to the right loader based on config.dataset_type."""
-    dtype = getattr(config, "dataset_type", "truth_table")
+    dtype        = getattr(config, "dataset_type", "truth_table")
+    seed         = getattr(config, "seed", 42)
+    val_fraction = getattr(config, "val_fraction", 0.0)
     if dtype == "truth_table":
         return load_truth_table(
             formula=getattr(config, "formula", "f1"),
             n_values=getattr(config, "n_values", 3),
             n_vars=getattr(config, "n_vars", 6),
-            seed=getattr(config, "seed", 42),
+            seed=seed,
         )
     elif dtype == "mushroom":
-        return load_mushroom(seed=getattr(config, "seed", 42))
+        return load_mushroom(seed=seed, val_fraction=val_fraction)
     elif dtype == "heart_disease":
         return load_heart_disease(
             subset=getattr(config, "heart_subset", "cleveland"),
-            seed=getattr(config, "seed", 42),
+            seed=seed, val_fraction=val_fraction,
         )
     elif dtype == "babi":
-        return load_babi_task11(seed=getattr(config, "seed", 42))
+        return load_babi_task11(seed=seed)
     elif dtype == "monk":
         return load_monk(
             problem=getattr(config, "monk_problem", 1),
-            seed=getattr(config, "seed", 42),
+            seed=seed,
         )
     elif dtype == "breast_cancer":
-        return load_breast_cancer(seed=getattr(config, "seed", 42))
+        return load_breast_cancer(seed=seed, val_fraction=val_fraction)
+    elif dtype == "spambase":
+        return load_spambase(seed=seed, val_fraction=val_fraction)
+    elif dtype == "musk":
+        return load_musk(seed=seed, val_fraction=val_fraction)
     else:
         raise ValueError(f"Unknown dataset type: {dtype!r}")

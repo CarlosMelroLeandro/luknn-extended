@@ -1,0 +1,31 @@
+% === Table: Bootstrap 95% CI for F1 (B1) + rank-biserial r (B2) ===
+\begin{table}[t]
+\caption{Bootstrap 95\% confidence intervals for mean $F_1$ score
+         (10 trials per configuration) and rank-biserial $r$ effect sizes
+         for key pairwise comparisons (Wilcoxon signed-rank).}
+\label{tab:bootstrap}
+\centering
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{l ccccc}
+\toprule
+Dataset & LM-Res & STE-Flat & STE-Res & Prox-Flat & Prox-Res \\
+        & $\bar{F}_1$ [95\%~CI] & $\bar{F}_1$ [95\%~CI] & $\bar{F}_1$ [95\%~CI] & $\bar{F}_1$ [95\%~CI] & $\bar{F}_1$ [95\%~CI] \\
+\midrule
+Mushroom & 0.103 [0.000, 0.248] & 0.229 [0.066, 0.426] & 0.299 [0.125, 0.479] & 0.000 [0.000, 0.000] & 0.000 [0.000, 0.000] \\
+Heart & 0.462 [0.259, 0.640] & 0.482 [0.274, 0.667] & 0.272 [0.080, 0.468] & 0.000 [0.000, 0.000] & 0.000 [0.000, 0.000] \\
+MONK-1 & 0.513 [0.351, 0.656] & 0.481 [0.275, 0.666] & 0.648 [0.484, 0.753] & 0.147 [0.000, 0.360] & 0.000 [0.000, 0.000] \\
+MONK-2 & 0.366 [0.164, 0.570] & 0.179 [0.023, 0.365] & 0.455 [0.291, 0.603] & 0.000 [0.000, 0.000] & 0.000 [0.000, 0.000] \\
+MONK-3 & 0.603 [0.341, 0.836] & 0.612 [0.393, 0.783] & 0.716 [0.541, 0.822] & 0.000 [0.000, 0.000] & 0.000 [0.000, 0.000] \\
+Breast Cancer & 0.000 [0.000, 0.000] & 0.109 [0.000, 0.270] & 0.137 [0.033, 0.262] & 0.000 [0.000, 0.000] & 0.000 [0.000, 0.000] \\
+\midrule
+\multicolumn{6}{l}{\textit{Effect sizes: rank-biserial $r$ (positive = second method better; ${}^*p<0.05$)}} \\
+& \multicolumn{2}{c}{STE-Flat $\to$ STE-Res} & \multicolumn{2}{c}{Prox-Flat $\to$ Prox-Res} & LM-Res $\to$ STE-Res \\
+Mushroom & \multicolumn{2}{c}{$r=+0.067$} & \multicolumn{2}{c}{$r=+0.000$} & $r=+0.643$ \\
+Heart & \multicolumn{2}{c}{$r=-0.511$} & \multicolumn{2}{c}{$r=+0.000$} & $r=-0.333$ \\
+MONK-1 & \multicolumn{2}{c}{$r=+0.527$} & \multicolumn{2}{c}{$r=-1.000$} & $r=+0.467$ \\
+MONK-2 & \multicolumn{2}{c}{$r=+0.867$$^*$} & \multicolumn{2}{c}{$r=+0.000$} & $r=+0.244$ \\
+MONK-3 & \multicolumn{2}{c}{$r=+0.236$} & \multicolumn{2}{c}{$r=+0.000$} & $r=+0.022$ \\
+Breast Cancer & \multicolumn{2}{c}{$r=+0.143$} & \multicolumn{2}{c}{$r=+0.000$} & $r=+1.000$ \\
+\bottomrule
+\end{tabular}
+\end{table}

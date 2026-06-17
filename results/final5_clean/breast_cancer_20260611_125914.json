@@ -1,0 +1,916 @@
+{
+  "dataset": "breast_cancer",
+  "best_params": {
+    "lm_residual": {
+      "hidden_width": 4,
+      "n_blocks": 1,
+      "mu_init": 0.001,
+      "prune": true
+    },
+    "ste": {
+      "hidden_layers": [
+        6,
+        4
+      ],
+      "lr": 0.01
+    },
+    "ste_residual": {
+      "lr": 0.001,
+      "hidden_width": 6,
+      "n_blocks": 1
+    },
+    "proximal": {
+      "hidden_layers": [
+        4,
+        4
+      ],
+      "lr": 0.005,
+      "lambda_sparse": 0.0001
+    },
+    "proximal_residual": {
+      "lr": 0.005,
+      "lambda_sparse": 0.0001,
+      "hidden_width": 6
+    }
+  },
+  "stats": {
+    "accuracy": {
+      "lm_residual": {
+        "mean": 0.5684210300445557,
+        "std": 0.19972279165331083
+      },
+      "ste": {
+        "mean": 0.571929806470871,
+        "std": 0.11961886855654714
+      },
+      "ste_residual": {
+        "mean": 0.5877192825078964,
+        "std": 0.09932916383280747
+      },
+      "proximal": {
+        "mean": 0.6052631348371506,
+        "std": 0.08321782671410556
+      },
+      "proximal_residual": {
+        "mean": 0.6315789222717285,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.875,
+        "STE/STEr": 0.6875,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.375
+      }
+    },
+    "f1": {
+      "lm_residual": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "ste": {
+        "mean": 0.10877192982456138,
+        "std": 0.22946044992865536
+      },
+      "ste_residual": {
+        "mean": 0.09704390980688316,
+        "std": 0.18031104769046094
+      },
+      "proximal": {
+        "mean": 0.05384615384615384,
+        "std": 0.17027648939368198
+      },
+      "proximal_residual": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.5,
+        "STE/STEr": 1.0,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.25
+      }
+    },
+    "final_mse": {
+      "lm_residual": {
+        "mean": 0.2642989605665207,
+        "std": 0.020447255584616388
+      },
+      "ste": {
+        "mean": 0.3190388470888138,
+        "std": 0.1047905892149868
+      },
+      "ste_residual": {
+        "mean": 0.32211884260177615,
+        "std": 0.14127484197133267
+      },
+      "proximal": {
+        "mean": 0.32358078956604003,
+        "std": 0.13947163199496398
+      },
+      "proximal_residual": {
+        "mean": 0.27947598695755005,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.046875,
+        "STE/STEr": 0.9375,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.8125
+      }
+    },
+    "lambda_similarity": {
+      "lm_residual": {
+        "mean": 0.6860403959715191,
+        "std": 0.007939208973600419
+      },
+      "ste": {
+        "mean": 0.6697580839208863,
+        "std": 0.05003949333664756
+      },
+      "ste_residual": {
+        "mean": 0.6761710213126015,
+        "std": 0.052094078595804665
+      },
+      "proximal": {
+        "mean": 0.6758184000209716,
+        "std": 0.05061993355817293
+      },
+      "proximal_residual": {
+        "mean": 0.6918258285259934,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.8125,
+        "STE/STEr": 0.578125,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.625
+      }
+    },
+    "total_time_s": {
+      "lm_residual": {
+        "mean": 0.3743794106998394,
+        "std": 0.2782073053287212
+      },
+      "ste": {
+        "mean": 0.7953027866997218,
+        "std": 0.33425198009171925
+      },
+      "ste_residual": {
+        "mean": 1.4359259961001953,
+        "std": 0.9246005738777233
+      },
+      "proximal": {
+        "mean": 0.2554745756000557,
+        "std": 0.11924551625591864
+      },
+      "proximal_residual": {
+        "mean": 0.21669743960010238,
+        "std": 0.05487586196620463
+      },
+      "p_values": {
+        "LM/STE": 0.009765625,
+        "STE/STEr": 0.130859375,
+        "PRX/PRXr": 0.6953125,
+        "STEr/PRXr": 0.001953125
+      }
+    },
+    "iterations": {
+      "lm_residual": {
+        "mean": 540.1,
+        "std": 336.8331106712113
+      },
+      "ste": {
+        "mean": 560.9,
+        "std": 229.5074193910854
+      },
+      "ste_residual": {
+        "mean": 863.8,
+        "std": 529.5773576898637
+      },
+      "proximal": {
+        "mean": 189.8,
+        "std": 25.437505118754604
+      },
+      "proximal_residual": {
+        "mean": 160.1,
+        "std": 45.831696940484804
+      },
+      "p_values": {
+        "LM/STE": 0.921875,
+        "STE/STEr": 0.275390625,
+        "PRX/PRXr": 0.1015625,
+        "STEr/PRXr": 0.001953125
+      }
+    }
+  },
+  "lm_residual": [
+    {
+      "method": "LM_Residual",
+      "dataset": "breast_cancer",
+      "trial": 0,
+      "final_mse": 0.24050424993038177,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 13.060125350952148,
+      "lambda_similarity": 0.6771192366651814,
+      "total_time_s": 0.7999325239998143,
+      "iterations": 191,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "breast_cancer",
+      "trial": 1,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 48.77757263183594,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.15216055999917444,
+      "iterations": 800,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "breast_cancer",
+      "trial": 2,
+      "final_mse": 0.22816899418830872,
+      "accuracy": 0.0,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 9.115769386291504,
+      "lambda_similarity": 0.6710667219241049,
+      "total_time_s": 0.7997655429990118,
+      "iterations": 198,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "breast_cancer",
+      "trial": 3,
+      "final_mse": 0.2522248923778534,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 7.090170860290527,
+      "lambda_similarity": 0.6820706098713041,
+      "total_time_s": 0.48153996099972574,
+      "iterations": 110,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "breast_cancer",
+      "trial": 4,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 53.76337432861328,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.05269741699885344,
+      "iterations": 800,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "breast_cancer",
+      "trial": 5,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 38.60798645019531,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.06548911400022916,
+      "iterations": 800,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "breast_cancer",
+      "trial": 6,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 22.560150146484375,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.19439284699910786,
+      "iterations": 800,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "breast_cancer",
+      "trial": 7,
+      "final_mse": 0.24523554742336273,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 14.070033073425293,
+      "lambda_similarity": 0.6791924200986404,
+      "total_time_s": 0.42356869500144967,
+      "iterations": 102,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "breast_cancer",
+      "trial": 8,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 38.5204963684082,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.2463255990005564,
+      "iterations": 800,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "breast_cancer",
+      "trial": 9,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 33.32695007324219,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.5279218470004707,
+      "iterations": 800,
+      "converged": false
+    }
+  ],
+  "ste": [
+    {
+      "method": "STE",
+      "dataset": "breast_cancer",
+      "trial": 0,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.8647809020003479,
+      "iterations": 612,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "breast_cancer",
+      "trial": 1,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.5957115179990069,
+      "iterations": 438,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "breast_cancer",
+      "trial": 2,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.6415377220000664,
+      "iterations": 409,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "breast_cancer",
+      "trial": 3,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.5970283480000944,
+      "iterations": 429,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "breast_cancer",
+      "trial": 4,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.5775192459987011,
+      "iterations": 405,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "breast_cancer",
+      "trial": 5,
+      "final_mse": 0.27979257702827454,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6921293097991847,
+      "total_time_s": 1.3783597599995119,
+      "iterations": 991,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "breast_cancer",
+      "trial": 6,
+      "final_mse": 0.6108278632164001,
+      "accuracy": 0.2982456088066101,
+      "f1": 0.5263157894736842,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5344013166771924,
+      "total_time_s": 0.6126518720011518,
+      "iterations": 443,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "breast_cancer",
+      "trial": 7,
+      "final_mse": 0.34780293703079224,
+      "accuracy": 0.4035087823867798,
+      "f1": 0.5614035087719298,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6426819426515374,
+      "total_time_s": 0.7246389779993478,
+      "iterations": 514,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "breast_cancer",
+      "trial": 8,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.5311573259987199,
+      "iterations": 401,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "breast_cancer",
+      "trial": 9,
+      "final_mse": 0.2751091718673706,
+      "accuracy": 0.5964912176132202,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6774132989249894,
+      "total_time_s": 1.4296421950002696,
+      "iterations": 967,
+      "converged": false
+    }
+  ],
+  "ste_residual": [
+    {
+      "method": "STE_Residual",
+      "dataset": "breast_cancer",
+      "trial": 0,
+      "final_mse": 0.2412063181400299,
+      "accuracy": 0.6666666865348816,
+      "f1": 0.17391304347826086,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7190498889865587,
+      "total_time_s": 1.9479063219987438,
+      "iterations": 1199,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "breast_cancer",
+      "trial": 1,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 3.4372048850000283,
+      "iterations": 1920,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "breast_cancer",
+      "trial": 2,
+      "final_mse": 0.27580785751342773,
+      "accuracy": 0.6140350699424744,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6821838219339205,
+      "total_time_s": 2.4294560070011357,
+      "iterations": 1518,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "breast_cancer",
+      "trial": 3,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.6761447230001068,
+      "iterations": 401,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "breast_cancer",
+      "trial": 4,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.7163136510007462,
+      "iterations": 425,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "breast_cancer",
+      "trial": 5,
+      "final_mse": 0.72052401304245,
+      "accuracy": 0.3684210479259491,
+      "f1": 0.5384615384615384,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5317515434757755,
+      "total_time_s": 0.668543308000153,
+      "iterations": 401,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "breast_cancer",
+      "trial": 6,
+      "final_mse": 0.26633188128471375,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6974111805384371,
+      "total_time_s": 1.1416902590008249,
+      "iterations": 708,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "breast_cancer",
+      "trial": 7,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 1.4747812240002531,
+      "iterations": 891,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "breast_cancer",
+      "trial": 8,
+      "final_mse": 0.31993842124938965,
+      "accuracy": 0.4385964870452881,
+      "f1": 0.25806451612903225,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6721846355613567,
+      "total_time_s": 1.2190216210001381,
+      "iterations": 774,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "breast_cancer",
+      "trial": 9,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.6481979609998234,
+      "iterations": 401,
+      "converged": false
+    }
+  ],
+  "proximal": [
+    {
+      "method": "Proximal",
+      "dataset": "breast_cancer",
+      "trial": 0,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.24227713300024334,
+      "iterations": 213,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "breast_cancer",
+      "trial": 1,
+      "final_mse": 0.72052401304245,
+      "accuracy": 0.3684210479259491,
+      "f1": 0.5384615384615384,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5317515434757755,
+      "total_time_s": 0.21886062799967476,
+      "iterations": 188,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "breast_cancer",
+      "trial": 2,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.17724502800047048,
+      "iterations": 158,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "breast_cancer",
+      "trial": 3,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.5836221820009087,
+      "iterations": 197,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "breast_cancer",
+      "trial": 4,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.200746500000605,
+      "iterations": 187,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "breast_cancer",
+      "trial": 5,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.1892446279998694,
+      "iterations": 172,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "breast_cancer",
+      "trial": 6,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.2611384159990848,
+      "iterations": 216,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "breast_cancer",
+      "trial": 7,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.24396817100023327,
+      "iterations": 216,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "breast_cancer",
+      "trial": 8,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.18398595299913723,
+      "iterations": 143,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "breast_cancer",
+      "trial": 9,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.2536571170003299,
+      "iterations": 208,
+      "converged": false
+    }
+  ],
+  "proximal_residual": [
+    {
+      "method": "Proximal_Residual",
+      "dataset": "breast_cancer",
+      "trial": 0,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.21513368799969612,
+      "iterations": 161,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "breast_cancer",
+      "trial": 1,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.34192485899984604,
+      "iterations": 273,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "breast_cancer",
+      "trial": 2,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.2052231590005249,
+      "iterations": 138,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "breast_cancer",
+      "trial": 3,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.17527273399900878,
+      "iterations": 125,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "breast_cancer",
+      "trial": 4,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.2338482909999584,
+      "iterations": 156,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "breast_cancer",
+      "trial": 5,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.2503307130009489,
+      "iterations": 187,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "breast_cancer",
+      "trial": 6,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.1926375030016061,
+      "iterations": 150,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "breast_cancer",
+      "trial": 7,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.21894405899911362,
+      "iterations": 150,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "breast_cancer",
+      "trial": 8,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.13086190200010606,
+      "iterations": 101,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "breast_cancer",
+      "trial": 9,
+      "final_mse": 0.27947598695755005,
+      "accuracy": 0.6315789222717285,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6918258285259934,
+      "total_time_s": 0.2027974880002148,
+      "iterations": 160,
+      "converged": false
+    }
+  ]
+}

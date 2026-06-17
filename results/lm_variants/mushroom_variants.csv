@@ -1,0 +1,13 @@
+dataset,variant,seed,f1_cont,f1_crisp,acc,dn_pre,dn_post,crystallized,converged,iterations,final_mse,time_s,reason
+mushroom,LM_base,42,0.0,0.0,0.6602,12669.7568,0.0,True,False,500,0.341577,1012.41,max_iter
+mushroom,LM_base,59,0.0,0.0,0.6602,14279.6045,0.0,True,False,500,0.341577,1069.06,max_iter
+mushroom,LM_base,76,0.0,0.0,0.6602,12440.6123,0.0,True,False,500,0.341577,828.51,max_iter
+mushroom,LM_delayed,42,0.0,0.0,0.6602,0.0,0.0,True,True,14,0.341577,752.45,converged
+mushroom,LM_delayed,59,0.0,0.0,0.6602,0.0,0.0,True,True,26,0.341577,1381.49,converged
+mushroom,LM_delayed,76,0.0,0.0,0.6602,0.0,0.0,True,True,19,0.341577,1451.29,converged
+mushroom,LM_progressive,42,0.0,0.0,0.6602,12669.7568,0.0,True,False,500,0.341577,1386.47,max_iter
+mushroom,LM_progressive,59,0.0,0.0,0.6602,14279.6045,0.0,True,False,500,0.341577,1334.87,max_iter
+mushroom,LM_progressive,76,0.0,0.0,0.6602,12440.6123,0.0,True,False,500,0.341577,1184.56,max_iter
+mushroom,LM_dual,42,0.0,0.0,0.6602,12669.7568,0.0,True,False,500,0.341577,1013.02,max_iter
+mushroom,LM_dual,59,0.0,0.0,0.6602,14329.6055,0.0,True,False,500,0.341577,1882.23,max_iter
+mushroom,LM_dual,76,0.0,0.0,0.6602,12440.6123,0.0,True,False,500,0.341577,1023.0,max_iter

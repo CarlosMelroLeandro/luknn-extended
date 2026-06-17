@@ -19,6 +19,7 @@ from torch import Tensor
 
 from .config import ExperimentConfig
 from .datasets import load_dataset, Dataset
+from ..preprocessing import XGBFeatureSelector
 from .metrics import (
     BenchmarkResult,
     MemoryTracker,
@@ -79,8 +80,30 @@ class BenchmarkRunner:
         method = cfg.optimizer_method
         mode = _OPTIMIZER_MODE.get(method, "continuous")
 
-        # Use actual dataset feature count (overrides config n_inputs for real datasets)
-        n_inputs = dataset.n_features if dataset.n_features != cfg.n_inputs else cfg.n_inputs
+        # Feature selection (fitted on train split only — no leakage)
+        x_train = dataset.X_train
+        x_test  = dataset.X_test
+        x_val   = dataset.X_val
+        fs_k: int | None = None
+        fs_indices: list[int] | None = None
+
+        if cfg.use_feature_selection:
+            fs = XGBFeatureSelector(
+                threshold=cfg.fs_threshold,
+                importance_type=cfg.fs_importance_type,
+                max_features=cfg.fs_max_features,
+            )
+            x_train = fs.fit_transform(dataset.X_train, dataset.y_train)
+            x_test  = fs.transform(dataset.X_test)
+            if x_val is not None:
+                x_val = fs.transform(x_val)
+            fs_k = fs.k_
+            fs_indices = fs.selected_indices_.tolist()
+            if cfg.verbose:
+                print(f"  [FS] {fs.summary()}")
+
+        # Use selected feature count as n_inputs
+        n_inputs = x_train.shape[1]
 
         if method in _RESIDUAL_METHODS:
             model = LukResidualNet(
@@ -95,7 +118,7 @@ class BenchmarkRunner:
 
         optimizer = self._build_optimizer(model, method, cfg.optimizer_params)
 
-        x_train, y_train = dataset.X_train, dataset.y_train
+        y_train = dataset.y_train
 
         with MemoryTracker() as mem:
             t0 = time.perf_counter()
@@ -109,13 +132,18 @@ class BenchmarkRunner:
             mem.update()
             elapsed = time.perf_counter() - t0
 
-        # --- Metrics on test set ---
-        with torch.no_grad():
-            pred_test = model(dataset.X_test)
+        # Evaluate on val set during HP tuning; on test set for final evaluation
+        if cfg.use_val_split and x_val is not None:
+            eval_X, eval_y = x_val, dataset.y_val
+        else:
+            eval_X, eval_y = x_test, dataset.y_test
 
-        accuracy = compute_accuracy(pred_test, dataset.y_test)
-        f1 = compute_f1(pred_test, dataset.y_test)
-        lam = compute_lambda_similarity(model, dataset.X_test, dataset.y_test)
+        with torch.no_grad():
+            pred_test = model(eval_X)
+
+        accuracy = compute_accuracy(pred_test, eval_y)
+        f1 = compute_f1(pred_test, eval_y)
+        lam = compute_lambda_similarity(model, eval_X, eval_y)
         delta_n = compute_delta_n(model)
         crystallized = delta_n < 1e-3
         n_iter = train_result.iterations
@@ -139,7 +167,7 @@ class BenchmarkRunner:
             iterations=n_iter,
             iter_to_threshold=i_thresh,
             mse_history=train_result.mse_history,
-            config=cfg.to_dict(),
+            config={**cfg.to_dict(), "fs_k": fs_k, "fs_indices": fs_indices},
         )
 
     @staticmethod

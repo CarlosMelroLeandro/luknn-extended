@@ -66,6 +66,14 @@ class ExperimentConfig:
     tol_mse: float = 2e-3
     max_iter: int = 400
     n_trials: int = 3
+    # Feature selection (XGBoost-based, applied before model construction)
+    use_feature_selection: bool = False
+    fs_threshold: float = 0.90        # cumulative gain coverage target
+    fs_importance_type: str = "gain"  # 'gain' | 'weight' | 'cover'
+    fs_max_features: int | None = None  # hard cap on k (None = no cap)
+    # Split control (Tier C: proper train/val/test separation)
+    val_fraction: float = 0.0    # >0 → carve val from training set
+    use_val_split: bool = False  # True → evaluate on val instead of test
     # Logging
     results_dir: str = "results"
     verbose: bool = False
@@ -101,6 +109,10 @@ class ExperimentConfig:
             tol_mse=tr.get("tol_mse", 2e-3),
             max_iter=tr.get("max_iter", 400),
             n_trials=tr.get("n_trials", 3),
+            use_feature_selection=raw.get("feature_selection", {}).get("enabled", False),
+            fs_threshold=raw.get("feature_selection", {}).get("threshold", 0.90),
+            fs_importance_type=raw.get("feature_selection", {}).get("importance_type", "gain"),
+            fs_max_features=raw.get("feature_selection", {}).get("max_features", None),
             results_dir=lg.get("results_dir", "results"),
             verbose=lg.get("verbose", False),
         )

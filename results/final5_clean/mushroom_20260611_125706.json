@@ -1,0 +1,915 @@
+{
+  "dataset": "mushroom",
+  "best_params": {
+    "lm_residual": {
+      "hidden_width": 4,
+      "n_blocks": 1,
+      "mu_init": 0.01
+    },
+    "ste": {
+      "hidden_layers": [
+        6,
+        4
+      ],
+      "lr": 0.01
+    },
+    "ste_residual": {
+      "lr": 0.01,
+      "hidden_width": 8,
+      "n_blocks": 1
+    },
+    "proximal": {
+      "hidden_layers": [
+        4,
+        4
+      ],
+      "lr": 0.005,
+      "lambda_sparse": 0.0001
+    },
+    "proximal_residual": {
+      "lr": 0.005,
+      "lambda_sparse": 0.0001,
+      "hidden_width": 6
+    }
+  },
+  "stats": {
+    "accuracy": {
+      "lm_residual": {
+        "mean": 0.6281427383422852,
+        "std": 0.10130572969315259
+      },
+      "ste": {
+        "mean": 0.6193836152553558,
+        "std": 0.10004460270405484
+      },
+      "ste_residual": {
+        "mean": 0.6110300064086914,
+        "std": 0.10318155078546508
+      },
+      "proximal": {
+        "mean": 0.6601784229278564,
+        "std": 0.0
+      },
+      "proximal_residual": {
+        "mean": 0.6601784229278564,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.75,
+        "STE/STEr": 0.875,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.125
+      }
+    },
+    "f1": {
+      "lm_residual": {
+        "mean": 0.05072639225181598,
+        "std": 0.16041093699885606
+      },
+      "ste": {
+        "mean": 0.17466582754432056,
+        "std": 0.2829218078025495
+      },
+      "ste_residual": {
+        "mean": 0.18177026007978575,
+        "std": 0.2801066743492926
+      },
+      "proximal": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "proximal_residual": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.375,
+        "STE/STEr": 0.8125,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.03125
+      }
+    },
+    "final_mse": {
+      "lm_residual": {
+        "mean": 0.37326171696186067,
+        "std": 0.10019542206530356
+      },
+      "ste": {
+        "mean": 0.3763582080602646,
+        "std": 0.10005210245702076
+      },
+      "ste_residual": {
+        "mean": 0.38866055607795713,
+        "std": 0.10129724329254451
+      },
+      "proximal": {
+        "mean": 0.3415771424770355,
+        "std": 0.0
+      },
+      "proximal_residual": {
+        "mean": 0.3415771424770355,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 1.0,
+        "STE/STEr": 0.8125,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.15625
+      }
+    },
+    "lambda_similarity": {
+      "lm_residual": {
+        "mean": 0.6923835096729455,
+        "std": 0.06170811883659706
+      },
+      "ste": {
+        "mean": 0.6884271921089382,
+        "std": 0.06123435829515051
+      },
+      "ste_residual": {
+        "mean": 0.6810058355507344,
+        "std": 0.06350459134545211
+      },
+      "proximal": {
+        "mean": 0.7118973302377442,
+        "std": 0.0
+      },
+      "proximal_residual": {
+        "mean": 0.7118973302377442,
+        "std": 0.0
+      },
+      "p_values": {
+        "LM/STE": 0.75,
+        "STE/STEr": 0.8125,
+        "PRX/PRXr": 1.0,
+        "STEr/PRXr": 0.15625
+      }
+    },
+    "total_time_s": {
+      "lm_residual": {
+        "mean": 0.435689280799852,
+        "std": 0.15765161037507094
+      },
+      "ste": {
+        "mean": 1.4244793043006212,
+        "std": 0.6284705168087718
+      },
+      "ste_residual": {
+        "mean": 1.707334472399816,
+        "std": 0.8864826352713504
+      },
+      "proximal": {
+        "mean": 0.11088023700012854,
+        "std": 0.0230976366968214
+      },
+      "proximal_residual": {
+        "mean": 0.08943613410046965,
+        "std": 0.020620251324205304
+      },
+      "p_values": {
+        "LM/STE": 0.001953125,
+        "STE/STEr": 0.556640625,
+        "PRX/PRXr": 0.048828125,
+        "STEr/PRXr": 0.001953125
+      }
+    },
+    "iterations": {
+      "lm_residual": {
+        "mean": 250.7,
+        "std": 300.6552289029191
+      },
+      "ste": {
+        "mean": 438.9,
+        "std": 188.84705745949844
+      },
+      "ste_residual": {
+        "mean": 496.8,
+        "std": 269.5860200793473
+      },
+      "proximal": {
+        "mean": 44.2,
+        "std": 6.713171133426189
+      },
+      "proximal_residual": {
+        "mean": 24.2,
+        "std": 6.425643072011462
+      },
+      "p_values": {
+        "LM/STE": 0.10546875,
+        "STE/STEr": 0.734375,
+        "PRX/PRXr": 0.001953125,
+        "STEr/PRXr": 0.001953125
+      }
+    }
+  },
+  "lm_residual": [
+    {
+      "method": "LM_Residual",
+      "dataset": "mushroom",
+      "trial": 0,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.4593138629988971,
+      "iterations": 20,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "mushroom",
+      "trial": 1,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 230.49591064453125,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.5552183529998729,
+      "iterations": 600,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "mushroom",
+      "trial": 2,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.6060652260002826,
+      "iterations": 24,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "mushroom",
+      "trial": 3,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 114.12821960449219,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.5066316020001977,
+      "iterations": 600,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "mushroom",
+      "trial": 4,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.1756367580001097,
+      "iterations": 10,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "mushroom",
+      "trial": 5,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 212.97299194335938,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.32602436899833265,
+      "iterations": 600,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "mushroom",
+      "trial": 6,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": false,
+      "delta_n": 231.0845947265625,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.6956029570010287,
+      "iterations": 600,
+      "converged": false
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "mushroom",
+      "trial": 7,
+      "final_mse": 0.6584228873252869,
+      "accuracy": 0.33982157707214355,
+      "f1": 0.5072639225181598,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5167591245897577,
+      "total_time_s": 0.33935838700017484,
+      "iterations": 19,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "mushroom",
+      "trial": 8,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.38108665799882147,
+      "iterations": 21,
+      "converged": true
+    },
+    {
+      "method": "LM_Residual",
+      "dataset": "mushroom",
+      "trial": 9,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.3119546350008022,
+      "iterations": 13,
+      "converged": true
+    }
+  ],
+  "ste": [
+    {
+      "method": "STE",
+      "dataset": "mushroom",
+      "trial": 0,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.7702296120005485,
+      "iterations": 260,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "mushroom",
+      "trial": 1,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 1.4010469099994225,
+      "iterations": 462,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "mushroom",
+      "trial": 2,
+      "final_mse": 0.33136528730392456,
+      "accuracy": 0.6277372241020203,
+      "f1": 0.6120033812341504,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7061469901053269,
+      "total_time_s": 2.5118549929993605,
+      "iterations": 774,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "mushroom",
+      "trial": 3,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 1.8230415640009596,
+      "iterations": 582,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "mushroom",
+      "trial": 4,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.7583740140016744,
+      "iterations": 253,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "mushroom",
+      "trial": 5,
+      "final_mse": 0.3827539086341858,
+      "accuracy": 0.6050283908843994,
+      "f1": 0.6273909716908952,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6780844947300889,
+      "total_time_s": 2.168383193999034,
+      "iterations": 635,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "mushroom",
+      "trial": 6,
+      "final_mse": 0.6584228873252869,
+      "accuracy": 0.33982157707214355,
+      "f1": 0.5072639225181598,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5167591245897577,
+      "total_time_s": 0.7725182410013076,
+      "iterations": 251,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "mushroom",
+      "trial": 7,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 1.4853653460013447,
+      "iterations": 386,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "mushroom",
+      "trial": 8,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.8797546500009048,
+      "iterations": 251,
+      "converged": false
+    },
+    {
+      "method": "STE",
+      "dataset": "mushroom",
+      "trial": 9,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 1.6742245190016547,
+      "iterations": 535,
+      "converged": false
+    }
+  ],
+  "ste_residual": [
+    {
+      "method": "STE_Residual",
+      "dataset": "mushroom",
+      "trial": 0,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 1.350170239998988,
+      "iterations": 394,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "mushroom",
+      "trial": 1,
+      "final_mse": 0.35698357224464417,
+      "accuracy": 0.639902651309967,
+      "f1": 0.6533957845433255,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6990243179772939,
+      "total_time_s": 2.2943393089990423,
+      "iterations": 680,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "mushroom",
+      "trial": 2,
+      "final_mse": 0.45535171031951904,
+      "accuracy": 0.5348743200302124,
+      "f1": 0.5905033916458408,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6281834957096097,
+      "total_time_s": 1.0508757019997574,
+      "iterations": 308,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "mushroom",
+      "trial": 3,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 1.7969677630007936,
+      "iterations": 507,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "mushroom",
+      "trial": 4,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 3.608365563000916,
+      "iterations": 1080,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "mushroom",
+      "trial": 5,
+      "final_mse": 0.371908575296402,
+      "accuracy": 0.6261151432991028,
+      "f1": 0.004319654427645789,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.6884748008893851,
+      "total_time_s": 0.9492351429998962,
+      "iterations": 255,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "mushroom",
+      "trial": 6,
+      "final_mse": 0.6584228873252869,
+      "accuracy": 0.33982157707214355,
+      "f1": 0.5072639225181598,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.5167591245897577,
+      "total_time_s": 0.8881568979995791,
+      "iterations": 251,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "mushroom",
+      "trial": 7,
+      "final_mse": 0.33655989170074463,
+      "accuracy": 0.668694257736206,
+      "f1": 0.05983889528193326,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7179855955335706,
+      "total_time_s": 0.885700277000069,
+      "iterations": 258,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "mushroom",
+      "trial": 8,
+      "final_mse": 0.34107035398483276,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.002380952380952381,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7120416998567496,
+      "total_time_s": 2.497782876000201,
+      "iterations": 738,
+      "converged": false
+    },
+    {
+      "method": "STE_Residual",
+      "dataset": "mushroom",
+      "trial": 9,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 1.7517509529989184,
+      "iterations": 497,
+      "converged": false
+    }
+  ],
+  "proximal": [
+    {
+      "method": "Proximal",
+      "dataset": "mushroom",
+      "trial": 0,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.1064101310003025,
+      "iterations": 42,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "mushroom",
+      "trial": 1,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.07018342800074606,
+      "iterations": 31,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "mushroom",
+      "trial": 2,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.1449706570001581,
+      "iterations": 41,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "mushroom",
+      "trial": 3,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.14500256899918895,
+      "iterations": 55,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "mushroom",
+      "trial": 4,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.12224063800022122,
+      "iterations": 51,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "mushroom",
+      "trial": 5,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.10741726000014751,
+      "iterations": 46,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "mushroom",
+      "trial": 6,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.0950209669990727,
+      "iterations": 40,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "mushroom",
+      "trial": 7,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.09443458700116025,
+      "iterations": 41,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "mushroom",
+      "trial": 8,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.11977237499922921,
+      "iterations": 48,
+      "converged": false
+    },
+    {
+      "method": "Proximal",
+      "dataset": "mushroom",
+      "trial": 9,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.10334975800105894,
+      "iterations": 47,
+      "converged": false
+    }
+  ],
+  "proximal_residual": [
+    {
+      "method": "Proximal_Residual",
+      "dataset": "mushroom",
+      "trial": 0,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.05169242000010854,
+      "iterations": 17,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "mushroom",
+      "trial": 1,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.09760985899993102,
+      "iterations": 22,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "mushroom",
+      "trial": 2,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.06164043700118782,
+      "iterations": 20,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "mushroom",
+      "trial": 3,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.11443309200149088,
+      "iterations": 32,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "mushroom",
+      "trial": 4,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.10209689899966179,
+      "iterations": 19,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "mushroom",
+      "trial": 5,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.07868672699987656,
+      "iterations": 26,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "mushroom",
+      "trial": 6,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.10744239000086964,
+      "iterations": 37,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "mushroom",
+      "trial": 7,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.08060840800135338,
+      "iterations": 25,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "mushroom",
+      "trial": 8,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.10416903800069122,
+      "iterations": 26,
+      "converged": false
+    },
+    {
+      "method": "Proximal_Residual",
+      "dataset": "mushroom",
+      "trial": 9,
+      "final_mse": 0.3415771424770355,
+      "accuracy": 0.6601784229278564,
+      "f1": 0.0,
+      "is_crystallized": true,
+      "delta_n": 0.0,
+      "lambda_similarity": 0.7118973302377442,
+      "total_time_s": 0.0959820709995256,
+      "iterations": 18,
+      "converged": false
+    }
+  ]
+}

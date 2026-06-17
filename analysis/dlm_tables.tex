@@ -1,0 +1,97 @@
+% === DLM Evaluation Tables ===
+% Generated from results/dlm_variants/ (30 trials each)
+% Included in Section 8 of REPORT.md and paper appendix.
+
+% --- Table 1: DLM standalone results (all 4 datasets) ---
+\begin{table}[t]
+\caption{DLM evaluation results across four datasets (30 independent trials each).
+         $\bar{F}_1$ and $\bar{\mathrm{Acc}}$ are means with 95\% CI via $t$-distribution
+         ($df=29$). Gate~conf.\ = mean softmax gate confidence after crystallization.
+         Repr.\ = fraction of trials with 100\% representable crystallized network.}
+\label{tab:dlm_results}
+\centering
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{l cc cc cc}
+\toprule
+Dataset & $n_f$ & $n_\text{neur}$
+        & $\bar{\mathrm{Acc}}$ [95\%~CI]
+        & $\bar{F}_1$ [95\%~CI]
+        & Gate conf.
+        & Repr. \\
+\midrule
+MONK-1    & 17  & 153 & 0.727 [0.713, 0.741] & 0.696 [0.684, 0.707] & $0.990 \pm 0.013$ & 1.00 \\
+Mushroom  & 111 & 576 & 0.839 [0.826, 0.851] & 0.693 [0.661, 0.725] & $0.940 \pm 0.081$ & 1.00 \\
+Spambase  & 57  & 513 & 0.632 [0.629, 0.636] & 0.052 [0.032, 0.072] & $0.906 \pm 0.184$ & 1.00 \\
+Musk v2   & 166 & 576 & 0.851 [0.851, 0.851] & 0.002 [$-$0.002, 0.005] & $0.761 \pm 0.220$ & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% --- Table 2: DLM vs ŁNN methods on MONK-1 ---
+\begin{table}[t]
+\caption{Comparison of DLM against five ŁNN crystallization methods on MONK-1
+         ($n_f=17$, 30 trials). $\bar{F}_1 \pm \sigma$ reported; best $\bar{F}_1$ in bold.
+         ŁNN results from the five-way benchmark (final5\_clean).}
+\label{tab:dlm_vs_lnn_monk}
+\centering
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{l cc}
+\toprule
+Method & $\bar{\mathrm{Acc}} \pm \sigma$ & $\bar{F}_1 \pm \sigma$ \\
+\midrule
+LM-Residual     & $0.515 \pm 0.296$ & $0.513 \pm 0.263$ \\
+STE-Flat        & $0.600 \pm 0.125$ & $0.481 \pm 0.337$ \\
+STE-Residual    & $0.674 \pm 0.118$ & $0.648 \pm 0.240$ \\
+Proximal-Flat   & $0.558 \pm 0.125$ & $0.147 \pm 0.311$ \\
+Proximal-Res    & $0.500 \pm 0.000$ & $0.000 \pm 0.000$ \\
+\midrule
+\textbf{DLM}    & $\mathbf{0.727 \pm 0.036}$ & $\mathbf{0.696 \pm 0.031}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% --- Table 3: DLM vs ŁNN methods on Mushroom ---
+\begin{table}[t]
+\caption{Comparison of DLM against five ŁNN crystallization methods on UCI Mushroom
+         ($n_f=111$, 30 trials). $\bar{F}_1 \pm \sigma$ reported; best in bold.}
+\label{tab:dlm_vs_lnn_mushroom}
+\centering
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{l cc}
+\toprule
+Method & $\bar{\mathrm{Acc}} \pm \sigma$ & $\bar{F}_1 \pm \sigma$ \\
+\midrule
+LM-Residual     & $0.628 \pm 0.101$ & $0.051 \pm 0.160$ \\
+STE-Flat        & $0.619 \pm 0.100$ & $0.175 \pm 0.283$ \\
+STE-Residual    & $0.611 \pm 0.103$ & $0.182 \pm 0.280$ \\
+Proximal-Flat   & $0.660 \pm 0.000$ & $0.000 \pm 0.000$ \\
+Proximal-Res    & $0.660 \pm 0.000$ & $0.000 \pm 0.000$ \\
+\midrule
+\textbf{DLM}    & $\mathbf{0.839 \pm 0.032}$ & $\mathbf{0.693 \pm 0.084}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% --- Table 4: DLM convergence diagnostics ---
+\begin{table}[t]
+\caption{DLM convergence diagnostics (30 trials each).
+         Iters = mean iterations at stopping.
+         Stop reason: \textit{stag-p2} = Phase-2 stagnation; \textit{stag-p1} = Phase-1 stagnation;
+         \textit{max} = budget exhausted. No trial converged (MSE $<$ tol) in any dataset.}
+\label{tab:dlm_convergence}
+\centering
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{l ccc c}
+\toprule
+Dataset & Mean iters $\pm\,\sigma$ & Gate conf.\ $\pm\,\sigma$ & MSE & Stop reason (count) \\
+\midrule
+MONK-1   & $2615 \pm 287$ & $0.990 \pm 0.013$ & 0.156 & stag-p2 (25), max (5) \\
+Mushroom & $1660 \pm 150$ & $0.940 \pm 0.081$ & 0.121 & stag-p2 (29), max (1) \\
+Spambase & $1475 \pm 272$ & $0.906 \pm 0.184$ & 0.218 & stag-p2 (26), stag-p1 (3), max (1) \\
+Musk v2  & $1156 \pm 138$ & $0.761 \pm 0.220$ & 0.118 & stag-p2 (30) \\
+\bottomrule
+\end{tabular}
+\end{table}
